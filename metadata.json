@@ -1,0 +1,8 @@
+{
+  "name": "VELA LABEL",
+  "description": "Quiet luxury Parisian mezon women's wear e-commerce with bespoke tailoring, curated capsule collections, and Telegram checkout.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

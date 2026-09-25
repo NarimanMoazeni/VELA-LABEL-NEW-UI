@@ -1,0 +1,413 @@
+import React, { useState, useEffect, useMemo } from 'react';
+import { ArrowUp } from 'lucide-react';
+import { Header } from './components/Header';
+import { Hero } from './components/Hero';
+import { CategoryPromoBanners } from './components/CategoryPromoBanners';
+import { BestSellersBanner } from './components/BestSellersBanner';
+import { CategoryFilterBar } from './components/CategoryFilterBar';
+import { ProductCard } from './components/ProductCard';
+import { ProductSkeleton } from './components/ProductSkeleton';
+import { AtelierPhilosophy } from './components/AtelierPhilosophy';
+import { BespokeBanner } from './components/BespokeBanner';
+import { Footer } from './components/Footer';
+import { Toast } from './components/Toast';
+import { Reveal } from './components/Reveal';
+import { WishlistModal } from './components/WishlistModal';
+import { ProductModal } from './components/ProductModal';
+import { CartDrawer } from './components/CartDrawer';
+import { PRODUCTS, CATEGORIES } from './data/products';
+import { Product, CartItem, CustomerOrderData, ToastData } from './types';
+
+export default function App() {
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<string>('featured');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [isCategoryLoading, setIsCategoryLoading] = useState<boolean>(false);
+  const [showBackToTop, setShowBackToTop] = useState<boolean>(false);
+
+  const [activeModalProduct, setActiveModalProduct] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
+  const [isWishlistOpen, setIsWishlistOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 450);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Cart state with localStorage persistence (starts empty)
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    try {
+      const saved = localStorage.getItem('vela_cart');
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    } catch {
+      // Fallback
+    }
+    return [];
+  });
+
+  // Customer order form with localStorage persistence
+  const [customerData, setCustomerData] = useState<CustomerOrderData>(() => {
+    try {
+      const saved = localStorage.getItem('vela_customer_data');
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    } catch {
+      // Fallback
+    }
+    return {
+      fullName: '',
+      phone: '',
+      address: '',
+      postalCode: '',
+    };
+  });
+
+  // Wishlist with localStorage persistence
+  const [wishlist, setWishlist] = useState<Product[]>(() => {
+    try {
+      const saved = localStorage.getItem('vela_wishlist');
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    } catch {
+      // Fallback
+    }
+    return [];
+  });
+
+  const [toasts, setToasts] = useState<ToastData[]>([]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('vela_cart', JSON.stringify(cartItems));
+    } catch {
+      // Ignore
+    }
+  }, [cartItems]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('vela_customer_data', JSON.stringify(customerData));
+    } catch {
+      // Ignore
+    }
+  }, [customerData]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('vela_wishlist', JSON.stringify(wishlist));
+    } catch {
+      // Ignore
+    }
+  }, [wishlist]);
+
+  const showToast = (message: string) => {
+    const id = Date.now();
+    setToasts((prev) => [...prev, { id, message }]);
+    setTimeout(() => {
+      setToasts((prev) => prev.filter((t) => t.id !== id));
+    }, 3000);
+  };
+
+  const handleDismissToast = (id: number) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+  };
+
+  const handleScrollToCatalog = () => {
+    const el = document.getElementById('catalog-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleCategorySelect = (cat: string) => {
+    if (cat === 'bespoke') {
+      const el = document.getElementById('bespoke-appointment');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    setIsCategoryLoading(true);
+    setSelectedCategory(cat);
+    setTimeout(() => setIsCategoryLoading(false), 200);
+    handleScrollToCatalog();
+  };
+
+  const handleAddToCart = (
+    product: Product,
+    size: string,
+    color: string,
+    quantity: number
+  ) => {
+    const compositeId = `${product.id}-${size}-${color}`;
+    setCartItems((prev) => {
+      const existing = prev.find((item) => item.id === compositeId);
+      if (existing) {
+        return prev.map((item) =>
+          item.id === compositeId
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
+      }
+      return [
+        ...prev,
+        {
+          id: compositeId,
+          product,
+          size,
+          color,
+          quantity,
+        },
+      ];
+    });
+    showToast(`«${product.title}» به سبد خرید اضافه شد`);
+    setIsCartOpen(true);
+  };
+
+  const handleQuickAdd = (product: Product, e: React.MouseEvent) => {
+    e.stopPropagation();
+    handleOpenModal(product);
+  };
+
+  const handleUpdateQuantity = (id: string, delta: number) => {
+    setCartItems((prev) =>
+      prev
+        .map((item) => {
+          if (item.id === id) {
+            const newQty = item.quantity + delta;
+            return newQty > 0 ? { ...item, quantity: newQty } : null;
+          }
+          return item;
+        })
+        .filter(Boolean) as CartItem[]
+    );
+  };
+
+  const handleRemoveCartItem = (id: string) => {
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+    showToast('محصول از سبد خرید حذف شد');
+  };
+
+  const handleClearCart = () => {
+    setCartItems([]);
+    showToast('سبد خرید خالی شد');
+  };
+
+  const handleToggleWishlist = (product: Product, e: React.MouseEvent) => {
+    e.stopPropagation();
+    const exists = wishlist.some((item) => item.id === product.id);
+    if (exists) {
+      setWishlist((prev) => prev.filter((item) => item.id !== product.id));
+      showToast(`«${product.title}» از لیست برگزیده‌ها حذف شد`);
+    } else {
+      setWishlist((prev) => [...prev, product]);
+      showToast(`«${product.title}» به لیست برگزیده‌ها اضافه شد`);
+    }
+  };
+
+  const handleRemoveFromWishlist = (product: Product) => {
+    setWishlist((prev) => prev.filter((item) => item.id !== product.id));
+    showToast(`«${product.title}» از برگزیده‌ها حذف شد`);
+  };
+
+  const handleOpenModal = (product: Product) => {
+    setActiveModalProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const filteredProducts = useMemo(() => {
+    return PRODUCTS.filter((item) => {
+      const matchesCategory =
+        selectedCategory === 'all' || item.category === selectedCategory;
+
+      const matchesSearch =
+        !searchQuery.trim() ||
+        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.fabric.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.categoryLabel.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.description.toLowerCase().includes(searchQuery.toLowerCase());
+
+      return matchesCategory && matchesSearch;
+    }).sort((a, b) => {
+      if (sortBy === 'price-desc') return b.price - a.price;
+      if (sortBy === 'price-asc') return a.price - b.price;
+      return 0;
+    });
+  }, [selectedCategory, sortBy, searchQuery]);
+
+  const cartTotalCount = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
+
+  return (
+    <div className="min-h-screen flex flex-col bg-[#120E0C] text-[#F2E9DC] selection:bg-[#C5A880]/30 selection:text-white">
+      
+      {/* 1. Header with Fixed Luxury Layout */}
+      <Header
+        cartCount={cartTotalCount}
+        wishlistCount={wishlist.length}
+        onOpenCart={() => setIsCartOpen(true)}
+        onOpenWishlist={() => setIsWishlistOpen(true)}
+        activeCategory={selectedCategory}
+        onSelectCategory={handleCategorySelect}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+      />
+
+      {/* Main Flow */}
+      <main className="flex-1 pt-[76px] sm:pt-[92px]">
+        
+        {/* 2. Hero Section (Reference 2: Wide Atmospheric Banner) */}
+        <Hero
+          onExploreClick={handleScrollToCatalog}
+          onOpenQuickView={handleOpenModal}
+          featuredProducts={PRODUCTS.slice(0, 3)}
+        />
+
+        {/* 3. Trust Bar + Visual Category Showcase Cards (Reference 2) */}
+        <CategoryPromoBanners onSelectCategory={handleCategorySelect} />
+
+        {/* 4. Best Sellers Atmospheric Header Banner (Reference 1) */}
+        <section id="catalog-section" className="w-full scroll-mt-[80px]">
+          <BestSellersBanner />
+
+          {/* 5. Category Filter & Sort Bar (Reference 1) */}
+          <CategoryFilterBar
+            selectedCategory={selectedCategory}
+            onSelectCategory={handleCategorySelect}
+            categories={CATEGORIES}
+            productCount={filteredProducts.length}
+            sortBy={sortBy}
+            onSortChange={setSortBy}
+          />
+
+          {/* 6. Product Cards Grid (Reference 1: 3-Column Grid) */}
+          <div
+            id="catalog-grid"
+            className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 py-8 sm:py-12 scroll-mt-[180px]"
+          >
+            {isCategoryLoading ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-[1400px] mx-auto">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <ProductSkeleton key={i} />
+                ))}
+              </div>
+            ) : filteredProducts.length === 0 ? (
+              <div className="text-center py-16 bg-[#181411] rounded-3xl border border-white/10 space-y-4 px-4 max-w-xl mx-auto shadow-md">
+                <p className="font-display text-base sm:text-lg text-white font-semibold">
+                  هیچ اثری با مشخصات انتخابی شما یافت نشد.
+                </p>
+                <button
+                  onClick={() => {
+                    setSelectedCategory('all');
+                    setSearchQuery('');
+                  }}
+                  className="py-3 px-8 rounded-full bg-[#C5A880] text-[#120E0C] text-sm font-bold cursor-pointer hover:bg-[#D4B890] transition-colors shadow-md"
+                >
+                  نمایش همه محصولات مزون
+                </button>
+              </div>
+            ) : (
+              <div
+                key={selectedCategory}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-[1400px] mx-auto"
+              >
+                {filteredProducts.map((product, idx) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    index={idx}
+                    onOpenModal={handleOpenModal}
+                    onQuickAdd={handleQuickAdd}
+                    isWishlisted={wishlist.some((item) => item.id === product.id)}
+                    onToggleWishlist={handleToggleWishlist}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+
+        </section>
+
+        {/* 7. Atelier Craftsmanship Philosophy */}
+        <Reveal>
+          <AtelierPhilosophy />
+        </Reveal>
+
+        {/* 8. Bespoke Appointment Consultation Banner */}
+        <Reveal>
+          <BespokeBanner onOpenCart={() => setIsCartOpen(true)} />
+        </Reveal>
+
+      </main>
+
+      {/* 9. Minimalist Boutique Footer */}
+      <Footer onSelectCategory={handleCategorySelect} />
+
+      {/* Floating Back to Top Button */}
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 left-6 z-30 w-10 h-10 rounded-full bg-[#181411] text-[#C5A880] hover:bg-[#C5A880] hover:text-[#120E0C] border border-white/15 flex items-center justify-center shadow-2xl transition-all duration-200 active:scale-95 cursor-pointer skip-delay"
+          title="بازگشت به ابتدای صفحه"
+          aria-label="بازگشت به بالا"
+        >
+          <ArrowUp className="w-4 h-4" />
+        </button>
+      )}
+
+      {/* Checkout Drawer */}
+      <CartDrawer
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        items={cartItems}
+        onUpdateQuantity={handleUpdateQuantity}
+        onRemoveItem={handleRemoveCartItem}
+        onClearCart={handleClearCart}
+        customerData={customerData}
+        onCustomerDataChange={setCustomerData}
+        onShowToast={showToast}
+      />
+
+      {/* Product Detail Modal */}
+      {activeModalProduct && (
+        <ProductModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          product={activeModalProduct}
+          onAddToCart={handleAddToCart}
+          isWishlisted={wishlist.some((item) => item.id === activeModalProduct.id)}
+          onToggleWishlist={handleToggleWishlist}
+        />
+      )}
+
+      {/* Wishlist Modal */}
+      <WishlistModal
+        isOpen={isWishlistOpen}
+        onClose={() => setIsWishlistOpen(false)}
+        items={wishlist}
+        onRemoveFromWishlist={handleRemoveFromWishlist}
+        onAddToCart={(product) => {
+          setIsWishlistOpen(false);
+          handleOpenModal(product);
+        }}
+      />
+
+      {/* Toast Notification */}
+      <Toast toasts={toasts} onDismiss={handleDismissToast} />
+
+    </div>
+  );
+}

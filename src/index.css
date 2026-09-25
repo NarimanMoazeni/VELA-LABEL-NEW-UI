@@ -1,0 +1,294 @@
+@import "tailwindcss";
+
+/* Class-based dark mode (toggled via .dark on <html>) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: dark;
+}
+html:not(.dark) {
+  color-scheme: light;
+}
+
+/* High-Quality Persian Fonts: Official Estedad Webfonts */
+@font-face {
+  font-family: 'Estedad';
+  src: url('https://cdn.jsdelivr.net/gh/aminabedi68/Estedad@master/fonts/webfonts/Estedad-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Estedad';
+  src: url('https://cdn.jsdelivr.net/gh/aminabedi68/Estedad@master/fonts/webfonts/Estedad-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Estedad';
+  src: url('https://cdn.jsdelivr.net/gh/aminabedi68/Estedad@master/fonts/webfonts/Estedad-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Estedad';
+  src: url('https://cdn.jsdelivr.net/gh/aminabedi68/Estedad@master/fonts/webfonts/Estedad-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Estedad", "Vazirmatn", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Estedad", "Vazirmatn", sans-serif;
+  --font-brand: "Italiana", Georgia, serif;
+  --font-serif: "Italiana", Georgia, serif;
+  --font-accent: "Italiana", Georgia, serif;
+  --font-latin: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --color-gold: #C5A880;
+  --color-gold-hover: #D4B890;
+  --color-gold-light: #E5CCA8;
+  --color-gold-dark: #A88865;
+  --color-bg-dark: #120E0C;
+  --color-surface-dark: #181411;
+  --color-surface-elevated: #1E1915;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    direction: rtl;
+    font-family: var(--font-sans);
+    background-color: #120E0C;
+    color: #F2E9DC;
+    letter-spacing: 0;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #120E0C;
+    color: #F2E9DC;
+    overflow-x: hidden;
+    line-height: 1.6;
+    letter-spacing: 0;
+  }
+
+  /* Prevent letter-spacing distortion on Persian scripts */
+  h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select {
+    letter-spacing: 0;
+  }
+
+  /* Retain tracking only for explicit uppercase Latin codes/labels */
+  [dir="ltr"], .tracking-latin {
+    letter-spacing: 0.15em;
+  }
+
+  .font-latin {
+    font-family: var(--font-latin), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    letter-spacing: 0.18em;
+  }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Custom minimal scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #120E0C;
+}
+::-webkit-scrollbar-thumb {
+  background: #3D332A;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C5A880;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Skeleton Loading Shimmer */
+@keyframes luxuryShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    #1E1915 0%,
+    #2A231D 50%,
+    #1E1915 100%
+  );
+  background-size: 200% 100%;
+  animation: luxuryShimmer 1.8s ease-in-out infinite;
+}
+
+/* Stagger Entrance Animation */
+@keyframes staggerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger-item {
+  animation: staggerFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Cross-fade Micro-interactions */
+.crossfade-icon {
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skip-delay {
+  transition-duration: 120ms !important;
+}
+
+/* Accessibility: visible keyboard focus */
+:focus-visible {
+  outline: 2px solid #C5A880;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Prevent iOS auto-zoom on input focus */
+@media (max-width: 640px) {
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+}
+
+/* View transitions for buttery theme toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 0;
+}
+::view-transition-new(root) {
+  z-index: 1;
+}
+
+/* Cart bump, fade-up, pop-in animations */
+@keyframes cart-bump {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.18) rotate(-5deg); }
+  60% { transform: scale(0.94); }
+  100% { transform: scale(1); }
+}
+.animate-cart-bump {
+  animation: cart-bump 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-fade-in {
+  animation: fade-up 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+.animate-pop {
+  animation: pop-in 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero glint light sweep */
+@keyframes hero-glint {
+  0% {
+    transform: translateX(140%) rotate(24deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateX(-140%) rotate(24deg);
+    opacity: 0;
+  }
+}
+.hero-glint {
+  animation: hero-glint 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+}
+
+/* Hero layer transitions */
+.hero-layer {
+  transition:
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Ambient glow on dark page */
+.dark body {
+  background-image: radial-gradient(70% 500px at 50% -80px, rgba(197, 168, 128, 0.08), transparent 70%);
+  background-repeat: no-repeat;
+}
+
+/* Light mode overrides when user toggles off .dark */
+html:not(.dark),
+html:not(.dark) body {
+  background-color: #F7F4EF;
+  color: #1F1B18;
+}
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: #F7F4EF;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #D4C5B9;
+}
+html:not(.dark) .skeleton-shimmer {
+  background: linear-gradient(90deg, #EDE6DE 0%, #F8F3ED 50%, #EDE6DE 100%);
+}
