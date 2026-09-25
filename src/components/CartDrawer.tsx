@@ -60,7 +60,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     }
 
     if (!customerData.address.trim()) {
-      onShowToast('لطفاً آدرس تحویل سفارش را وارد نمایید');
+      onShowToast('لطفاً آدرس دقیق تحویل را وارد نمایید');
       return;
     }
 
@@ -89,17 +89,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     const encodedText = encodeURIComponent(messageText);
     const telegramUrl = `https://t.me/velalabel?text=${encodedText}`;
 
-    try {
-      const a = document.createElement('a');
-      a.href = telegramUrl;
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    } catch {
-      window.location.href = telegramUrl;
-    }
+    window.open(telegramUrl, '_blank');
     onShowToast('در حال انتقال به تلگرام مشاور اختصاصی مزون ولا...');
   };
 
@@ -108,23 +98,23 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
       <div className="fixed inset-0" onClick={onClose} />
 
       {/* Main Checkout Modal Container */}
-      <div className="relative w-full max-w-4xl bg-[#181411] sm:rounded-3xl shadow-2xl border border-white/10 flex flex-col max-h-screen sm:max-h-[92vh] overflow-hidden z-10 animate-pop text-right">
+      <div className="relative w-full max-w-4xl bg-[#181411] dark:bg-[#181411] bg-white sm:rounded-3xl shadow-2xl border border-white/10 dark:border-white/10 border-stone-200 flex flex-col max-h-screen sm:max-h-[92vh] overflow-hidden z-10 animate-pop text-right">
         
         {/* Header */}
-        <div className="px-5 sm:px-8 py-4.5 bg-[#14100E] border-b border-white/10 flex items-center justify-between shrink-0">
+        <div className="px-5 sm:px-8 py-4.5 bg-[#14100E] dark:bg-[#14100E] bg-[#FAF7F2] border-b border-white/10 dark:border-white/10 border-stone-200 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-[#C5A880]/15 border border-[#C5A880]/30 text-[#C5A880] flex items-center justify-center">
               <ShoppingBag className="w-4 h-4 text-[#C5A880]" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-serif text-sm tracking-widest text-white font-bold uppercase">VELA LABEL</span>
+                <span className="font-serif text-sm tracking-widest text-white dark:text-white text-stone-900 font-bold uppercase">VELA LABEL</span>
                 <span className="text-[#C5A880] text-xs">•</span>
-                <h2 className="font-display text-sm sm:text-base font-bold text-white">
+                <h2 className="font-display text-sm sm:text-base font-bold text-white dark:text-white text-stone-900">
                   تسویه‌حساب و ثبت سفارش
                 </h2>
               </div>
-              <p className="text-[11px] text-[#A89B90]">
+              <p className="text-[11px] text-[#A89B90] dark:text-[#A89B90] text-stone-500">
                 {items.length > 0
                   ? `${toPersianDigits(items.length)} آیتم در سبد خرید شما`
                   : 'سبد خرید شما خالی است'}
@@ -134,7 +124,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-white/5 border border-white/10 text-white/80 flex items-center justify-center hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-full bg-white/5 dark:bg-white/5 bg-stone-100 border border-white/10 dark:border-white/10 border-stone-300 text-white/80 dark:text-white/80 text-stone-700 flex items-center justify-center hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
             aria-label="بستن"
           >
             <X className="w-4 h-4" />
@@ -146,14 +136,14 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
           {items.length === 0 ? (
             /* Empty State */
             <div className="flex flex-col items-center justify-center py-16 text-center space-y-4">
-              <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#C5A880]">
+              <div className="w-16 h-16 rounded-full bg-white/5 dark:bg-white/5 bg-stone-100 border border-white/10 dark:border-white/10 border-stone-200 flex items-center justify-center text-[#C5A880]">
                 <ShoppingBag className="w-7 h-7" />
               </div>
               <div className="space-y-1">
-                <h3 className="font-display text-lg text-white font-semibold">
+                <h3 className="font-display text-lg text-white dark:text-white text-stone-900 font-semibold">
                   سبد خرید شما خالی است
                 </h3>
-                <p className="text-xs text-[#A89B90] max-w-xs leading-relaxed">
+                <p className="text-xs text-[#A89B90] dark:text-[#A89B90] text-stone-500 max-w-xs leading-relaxed">
                   کالکشن جدید وست، شلوار و کت‌های تک آتلیه ولا را مشاهده فرمایید.
                 </p>
               </div>
@@ -173,8 +163,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 
                 {/* 01 — Cart Review */}
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between pb-2 border-b border-white/10">
-                    <span className="text-sm font-bold text-white tracking-wide">
+                  <div className="flex items-center justify-between pb-2 border-b border-white/10 dark:border-white/10 border-stone-200">
+                    <span className="text-sm font-bold text-white dark:text-white text-stone-900 tracking-wide">
                       ۰۱ — بازبینی اقلام سبد خرید
                     </span>
                     <button
@@ -189,22 +179,22 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                     {items.map((item) => (
                       <div
                         key={item.id}
-                        className="flex items-center justify-between p-3.5 rounded-2xl bg-[#14100E] border border-white/10 gap-3"
+                        className="flex items-center justify-between p-3.5 rounded-2xl bg-[#14100E] dark:bg-[#14100E] bg-[#FAF7F2] border border-white/10 dark:border-white/10 border-stone-200 gap-3"
                       >
                         <img
                           src={item.product.image}
                           alt={item.product.title}
-                          className="w-14 h-18 object-cover rounded-xl border border-white/10 shrink-0"
+                          className="w-14 h-18 object-cover rounded-xl border border-white/10 dark:border-white/10 border-stone-200 shrink-0"
                         />
 
                         <div className="flex-1 min-w-0">
-                          <h4 className="text-sm font-bold text-white truncate">
+                          <h4 className="text-sm font-bold text-white dark:text-white text-stone-900 truncate">
                             {item.product.title}
                           </h4>
-                          <div className="text-xs text-[#A89B90] mt-0.5">
-                            سایز: <strong className="text-white font-bold">{item.size}</strong> • رنگ: {item.color}
+                          <div className="text-xs text-[#A89B90] dark:text-[#A89B90] text-stone-500 mt-0.5">
+                            سایز: <strong className="text-white dark:text-white text-stone-900 font-bold">{item.size}</strong> • رنگ: {item.color}
                           </div>
-                          <div className="text-sm font-extrabold text-[#E5CCA8] mt-1 font-display">
+                          <div className="text-sm font-extrabold text-[#E5CCA8] dark:text-[#E5CCA8] text-stone-900 mt-1 font-display">
                             {formatTomans(item.product.price * item.quantity)}
                           </div>
                         </div>
@@ -219,20 +209,20 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>
 
-                          <div className="flex items-center gap-1 bg-[#1E1915] border border-white/15 px-2 py-0.5 rounded-full">
+                          <div className="flex items-center gap-1 bg-[#1E1915] dark:bg-[#1E1915] bg-white border border-white/15 dark:border-white/15 border-stone-300 px-2 py-0.5 rounded-full">
                             <button
                               onClick={() => onUpdateQuantity(item.id, -1)}
-                              className="text-white font-bold px-1 text-xs hover:text-[#C5A880] cursor-pointer"
+                              className="text-white dark:text-white text-stone-800 font-bold px-1 text-xs hover:text-[#C5A880] cursor-pointer"
                               aria-label="کاهش تعداد"
                             >
                               -
                             </button>
-                            <span className="text-xs px-1 font-bold text-white">
+                            <span className="text-xs px-1 font-bold text-white dark:text-white text-stone-900">
                               {toPersianDigits(item.quantity)}
                             </span>
                             <button
                               onClick={() => onUpdateQuantity(item.id, 1)}
-                              className="text-white font-bold px-1 text-xs hover:text-[#C5A880] cursor-pointer"
+                              className="text-white dark:text-white text-stone-800 font-bold px-1 text-xs hover:text-[#C5A880] cursor-pointer"
                               aria-label="افزایش تعداد"
                             >
                               +
@@ -246,8 +236,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
                 {/* 02 — Customer Contact & Delivery Info */}
                 <div className="space-y-3 pt-2">
-                  <div className="pb-2 border-b border-white/10">
-                    <span className="text-sm font-bold text-white tracking-wide">
+                  <div className="pb-2 border-b border-white/10 dark:border-white/10 border-stone-200">
+                    <span className="text-sm font-bold text-white dark:text-white text-stone-900 tracking-wide">
                       ۰۲ — اطلاعات تماس و آدرس گیرنده
                     </span>
                   </div>
@@ -255,7 +245,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   <div className="space-y-3">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs text-[#EAE0D5] mb-1.5 font-bold">
+                        <label className="block text-xs text-[#EAE0D5] dark:text-[#EAE0D5] text-stone-700 mb-1.5 font-bold">
                           نام و نام خانوادگی <span className="text-[#C5A880]">*</span>
                         </label>
                         <input
@@ -268,12 +258,12 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                               fullName: e.target.value,
                             })
                           }
-                          className="w-full h-11 px-3.5 rounded-xl bg-[#14100E] border border-white/10 text-white text-sm font-medium focus:outline-none focus:border-[#C5A880] placeholder:text-[#786C65]"
+                          className="w-full h-11 px-3.5 rounded-xl bg-[#14100E] dark:bg-[#14100E] bg-[#FAF7F2] border border-white/10 dark:border-white/10 border-stone-300 text-white dark:text-white text-stone-900 text-sm font-medium focus:outline-none focus:border-[#C5A880] placeholder:text-[#786C65]"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-xs text-[#EAE0D5] mb-1.5 font-bold">
+                        <label className="block text-xs text-[#EAE0D5] dark:text-[#EAE0D5] text-stone-700 mb-1.5 font-bold">
                           شماره همراه <span className="text-[#C5A880]">*</span>
                         </label>
                         <input
@@ -287,13 +277,13 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                               phone: e.target.value,
                             })
                           }
-                          className="w-full h-11 px-3.5 rounded-xl bg-[#14100E] border border-white/10 text-white text-sm font-medium focus:outline-none focus:border-[#C5A880] text-right placeholder:text-[#786C65]"
+                          className="w-full h-11 px-3.5 rounded-xl bg-[#14100E] dark:bg-[#14100E] bg-[#FAF7F2] border border-white/10 dark:border-white/10 border-stone-300 text-white dark:text-white text-stone-900 text-sm font-medium focus:outline-none focus:border-[#C5A880] text-right placeholder:text-[#786C65]"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-xs text-[#EAE0D5] mb-1.5 font-bold">
+                      <label className="block text-xs text-[#EAE0D5] dark:text-[#EAE0D5] text-stone-700 mb-1.5 font-bold">
                         کد پستی (۱۰ رقمی)
                       </label>
                       <input
@@ -307,12 +297,12 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                             postalCode: e.target.value,
                           })
                         }
-                        className="w-full h-11 px-3.5 rounded-xl bg-[#14100E] border border-white/10 text-white text-sm font-medium focus:outline-none focus:border-[#C5A880] text-right placeholder:text-[#786C65]"
+                        className="w-full h-11 px-3.5 rounded-xl bg-[#14100E] dark:bg-[#14100E] bg-[#FAF7F2] border border-white/10 dark:border-white/10 border-stone-300 text-white dark:text-white text-stone-900 text-sm font-medium focus:outline-none focus:border-[#C5A880] text-right placeholder:text-[#786C65]"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs text-[#EAE0D5] mb-1.5 font-bold">
+                      <label className="block text-xs text-[#EAE0D5] dark:text-[#EAE0D5] text-stone-700 mb-1.5 font-bold">
                         آدرس دقیق پستی <span className="text-[#C5A880]">*</span>
                       </label>
                       <textarea
@@ -325,7 +315,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                             address: e.target.value,
                           })
                         }
-                        className="w-full p-3 rounded-xl bg-[#14100E] border border-white/10 text-white text-sm font-medium focus:outline-none focus:border-[#C5A880] placeholder:text-[#786C65] resize-none"
+                        className="w-full p-3 rounded-xl bg-[#14100E] dark:bg-[#14100E] bg-[#FAF7F2] border border-white/10 dark:border-white/10 border-stone-300 text-white dark:text-white text-stone-900 text-sm font-medium focus:outline-none focus:border-[#C5A880] placeholder:text-[#786C65] resize-none"
                       />
                     </div>
                   </div>
@@ -333,8 +323,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
                 {/* 03 — Payment Information (Bank Card) */}
                 <div className="space-y-3 pt-2">
-                  <div className="pb-2 border-b border-white/10">
-                    <span className="text-sm font-bold text-white tracking-wide">
+                  <div className="pb-2 border-b border-white/10 dark:border-white/10 border-stone-200">
+                    <span className="text-sm font-bold text-white dark:text-white text-stone-900 tracking-wide">
                       ۰۳ — واریز کارت‌به‌کارت
                     </span>
                   </div>
@@ -383,7 +373,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                     </div>
                   </div>
 
-                  <p className="text-xs text-[#A89B90] leading-relaxed">
+                  <p className="text-xs text-[#A89B90] dark:text-[#A89B90] text-stone-500 leading-relaxed">
                     پس از واریز مبلغ سفارش، تصویر رسید بانکی را در تلگرام مشاور ولا ارسال فرمایید.
                   </p>
                 </div>
@@ -392,36 +382,36 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
               {/* Left Column: Step 04 — Order Summary & Action (5 cols) */}
               <div className="md:col-span-5 md:sticky md:top-0 space-y-4">
-                <div className="p-5 sm:p-6 rounded-2xl bg-[#14100E] border border-white/10 space-y-4 shadow-md">
-                  <div className="pb-2.5 border-b border-white/10">
-                    <span className="text-sm font-bold text-white tracking-wide">
+                <div className="p-5 sm:p-6 rounded-2xl bg-[#14100E] dark:bg-[#14100E] bg-[#FAF7F2] border border-white/10 dark:border-white/10 border-stone-200 space-y-4 shadow-md">
+                  <div className="pb-2.5 border-b border-white/10 dark:border-white/10 border-stone-200">
+                    <span className="text-sm font-bold text-white dark:text-white text-stone-900 tracking-wide">
                       ۰۴ — خلاصه فاکتور سفارش
                     </span>
                   </div>
 
-                  <div className="space-y-3 text-sm font-medium text-[#A89B90]">
+                  <div className="space-y-3 text-sm font-medium text-[#A89B90] dark:text-[#A89B90] text-stone-600">
                     <div className="flex justify-between">
                       <span>مجموع ارزش اقلام ({toPersianDigits(items.length)} عدد):</span>
-                      <span className="text-white font-semibold">{formatTomans(totalPrice)}</span>
+                      <span className="text-white dark:text-white text-stone-900 font-semibold">{formatTomans(totalPrice)}</span>
                     </div>
 
                     <div className="flex justify-between">
                       <span>کاور اختصاصی و ارسال بیمه‌شده:</span>
-                      <span className="text-emerald-400 font-medium">رایگان (کپسول مزونی)</span>
+                      <span className="text-emerald-400 dark:text-emerald-400 text-emerald-600 font-medium">رایگان (کپسول مزونی)</span>
                     </div>
 
                     <div className="flex justify-between">
                       <span>خدمات شخصی‌دوزی و بسته‌بندی:</span>
-                      <span className="text-white font-medium">محاسبه‌شده</span>
+                      <span className="text-white dark:text-white text-stone-900 font-medium">محاسبه‌شده</span>
                     </div>
                   </div>
 
                   {/* Final Total */}
-                  <div className="pt-3.5 border-t border-white/10 flex items-baseline justify-between gap-2">
-                    <span className="text-sm sm:text-base font-extrabold text-white">
+                  <div className="pt-3.5 border-t border-white/10 dark:border-white/10 border-stone-200 flex items-baseline justify-between gap-2">
+                    <span className="text-sm sm:text-base font-extrabold text-white dark:text-white text-stone-900">
                       مبلغ نهایی سفارش:
                     </span>
-                    <span className="text-xl sm:text-2xl font-extrabold text-[#E5CCA8] font-display">
+                    <span className="text-xl sm:text-2xl font-extrabold text-[#E5CCA8] dark:text-[#E5CCA8] text-stone-900 font-display">
                       {formatTomans(totalPrice)}
                     </span>
                   </div>
@@ -437,14 +427,14 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                       <span>تایید و ارسال سفارش در تلگرام</span>
                     </button>
 
-                    <p className="text-center text-[10.5px] text-[#A89B90] leading-normal px-2">
+                    <p className="text-center text-[10.5px] text-[#A89B90] dark:text-[#A89B90] text-stone-500 leading-normal px-2">
                       ارتباط مستقیم با کارشناس آتلیه ولا (@velalabel) جهت ثبت قطعی و ارسال فیش واریزی
                     </p>
                   </div>
                 </div>
 
-                <div className="p-3.5 bg-white/5 rounded-2xl border border-white/10 text-xs text-[#A89B90] space-y-1">
-                  <div className="font-semibold text-white">ضمانت اصالت و سلامت مرسوله:</div>
+                <div className="p-3.5 bg-white/5 dark:bg-white/5 bg-[#FAF7F2] rounded-2xl border border-white/10 dark:border-white/10 border-stone-200 text-xs text-[#A89B90] dark:text-[#A89B90] text-stone-600 space-y-1">
+                  <div className="font-semibold text-white dark:text-white text-stone-900">ضمانت اصالت و سلامت مرسوله:</div>
                   <div>تمامی سفارشات با کاور زیپ‌دار اختصاصی مزون و چوب‌لباسی نفیس ارسال می‌گردند.</div>
                 </div>
               </div>

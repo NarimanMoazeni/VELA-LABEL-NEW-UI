@@ -3,12 +3,10 @@ import { ArrowUp } from 'lucide-react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { CategoryPromoBanners } from './components/CategoryPromoBanners';
-import { BestSellersBanner } from './components/BestSellersBanner';
 import { CategoryFilterBar } from './components/CategoryFilterBar';
 import { ProductCard } from './components/ProductCard';
 import { ProductSkeleton } from './components/ProductSkeleton';
-import { AtelierPhilosophy } from './components/AtelierPhilosophy';
-import { BespokeBanner } from './components/BespokeBanner';
+import { AtelierConcierge } from './components/AtelierConcierge';
 import { Footer } from './components/Footer';
 import { Toast } from './components/Toast';
 import { Reveal } from './components/Reveal';
@@ -125,7 +123,7 @@ export default function App() {
   };
 
   const handleScrollToCatalog = () => {
-    const el = document.getElementById('catalog-section');
+    const el = document.getElementById('catalog-filter-bar');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -252,9 +250,9 @@ export default function App() {
   const cartTotalCount = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#120E0C] text-[#F2E9DC] selection:bg-[#C5A880]/30 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#120E0C] dark:bg-[#120E0C] bg-[#F6F2EC] text-[#F2E9DC] dark:text-[#F2E9DC] text-stone-900 selection:bg-[#C5A880]/30 selection:text-white transition-colors duration-200">
       
-      {/* 1. Header with Fixed Luxury Layout */}
+      {/* 1. Header (Fixed top, without top announcement bar) */}
       <Header
         cartCount={cartTotalCount}
         wishlistCount={wishlist.length}
@@ -266,24 +264,21 @@ export default function App() {
         onSearchChange={setSearchQuery}
       />
 
-      {/* Main Flow */}
-      <main className="flex-1 pt-[76px] sm:pt-[92px]">
+      {/* Main Flow: Compact top offset since announcement bar is removed */}
+      <main className="flex-1 pt-16 sm:pt-[72px]">
         
-        {/* 2. Hero Section (Reference 2: Wide Atmospheric Banner) */}
+        {/* 2. Full-Bleed Open Hero Section (Reference 1: Widescreen, No Container) */}
         <Hero
           onExploreClick={handleScrollToCatalog}
           onOpenQuickView={handleOpenModal}
           featuredProducts={PRODUCTS.slice(0, 3)}
         />
 
-        {/* 3. Trust Bar + Visual Category Showcase Cards (Reference 2) */}
+        {/* 3. Full-Width Trust Bar + 3 Category Showcase Cards (Reference 2) */}
         <CategoryPromoBanners onSelectCategory={handleCategorySelect} />
 
-        {/* 4. Best Sellers Atmospheric Header Banner (Reference 1) */}
-        <section id="catalog-section" className="w-full scroll-mt-[80px]">
-          <BestSellersBanner />
-
-          {/* 5. Category Filter & Sort Bar (Reference 1) */}
+        {/* 4. Category Filter & Sort Bar (Clean transition without Best Sellers banner) */}
+        <section id="catalog-section" className="w-full scroll-mt-[72px]">
           <CategoryFilterBar
             selectedCategory={selectedCategory}
             onSelectCategory={handleCategorySelect}
@@ -293,10 +288,10 @@ export default function App() {
             onSortChange={setSortBy}
           />
 
-          {/* 6. Product Cards Grid (Reference 1: 3-Column Grid) */}
+          {/* 5. Product Cards Grid (3-Column Grid) */}
           <div
             id="catalog-grid"
-            className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 py-8 sm:py-12 scroll-mt-[180px]"
+            className="w-full max-w-[1800px] mx-auto px-4 sm:px-8 py-8 sm:py-12 scroll-mt-[160px]"
           >
             {isCategoryLoading ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-[1400px] mx-auto">
@@ -305,8 +300,8 @@ export default function App() {
                 ))}
               </div>
             ) : filteredProducts.length === 0 ? (
-              <div className="text-center py-16 bg-[#181411] rounded-3xl border border-white/10 space-y-4 px-4 max-w-xl mx-auto shadow-md">
-                <p className="font-display text-base sm:text-lg text-white font-semibold">
+              <div className="text-center py-16 bg-[#181411] dark:bg-[#181411] bg-white rounded-3xl border border-white/10 dark:border-white/10 border-stone-200 space-y-4 px-4 max-w-xl mx-auto shadow-md">
+                <p className="font-display text-base sm:text-lg text-white dark:text-white text-stone-900 font-semibold">
                   هیچ اثری با مشخصات انتخابی شما یافت نشد.
                 </p>
                 <button
@@ -338,29 +333,23 @@ export default function App() {
               </div>
             )}
           </div>
-
         </section>
 
-        {/* 7. Atelier Craftsmanship Philosophy */}
+        {/* 6. Compact, Unified Atelier & Bespoke Concierge Section */}
         <Reveal>
-          <AtelierPhilosophy />
-        </Reveal>
-
-        {/* 8. Bespoke Appointment Consultation Banner */}
-        <Reveal>
-          <BespokeBanner onOpenCart={() => setIsCartOpen(true)} />
+          <AtelierConcierge />
         </Reveal>
 
       </main>
 
-      {/* 9. Minimalist Boutique Footer */}
+      {/* 7. Minimalist Boutique Footer */}
       <Footer onSelectCategory={handleCategorySelect} />
 
       {/* Floating Back to Top Button */}
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 left-6 z-30 w-10 h-10 rounded-full bg-[#181411] text-[#C5A880] hover:bg-[#C5A880] hover:text-[#120E0C] border border-white/15 flex items-center justify-center shadow-2xl transition-all duration-200 active:scale-95 cursor-pointer skip-delay"
+          className="fixed bottom-6 left-6 z-30 w-10 h-10 rounded-full bg-[#181411] dark:bg-[#181411] bg-white text-[#C5A880] hover:bg-[#C5A880] hover:text-[#120E0C] border border-white/15 dark:border-white/15 border-stone-300 flex items-center justify-center shadow-2xl transition-all duration-200 active:scale-95 cursor-pointer skip-delay"
           title="بازگشت به ابتدای صفحه"
           aria-label="بازگشت به بالا"
         >

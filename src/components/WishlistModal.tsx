@@ -27,18 +27,18 @@ export const WishlistModal: React.FC<WishlistModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-fade-in select-none">
       <div className="fixed inset-0" onClick={onClose} />
 
-      <div className="bg-[#181411] rounded-2xl sm:rounded-3xl shadow-2xl max-w-lg w-full max-h-[85vh] overflow-hidden flex flex-col z-10 border border-white/10 animate-pop text-right">
+      <div className="bg-[#181411] dark:bg-[#181411] bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-lg w-full max-h-[85vh] overflow-hidden flex flex-col z-10 border border-white/10 dark:border-white/10 border-stone-200 animate-pop text-right">
         {/* Header */}
-        <div className="p-5 bg-[#14100E] border-b border-white/10 flex items-center justify-between">
+        <div className="p-5 bg-[#14100E] dark:bg-[#14100E] bg-[#FAF7F2] border-b border-white/10 dark:border-white/10 border-stone-200 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <Heart className="w-4 h-4 text-[#C5A880] fill-[#C5A880]" />
-            <h3 className="font-display text-lg text-white font-bold">
+            <h3 className="font-display text-lg text-white dark:text-white text-stone-900 font-bold">
               لیست برگزیده‌ها
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-white/5 border border-white/10 text-white/80 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-full bg-white/5 dark:bg-white/5 bg-stone-100 border border-white/10 dark:border-white/10 border-stone-300 text-white/80 dark:text-white/80 text-stone-700 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
             aria-label="بستن"
           >
             <X className="w-4 h-4" />
@@ -50,25 +50,25 @@ export const WishlistModal: React.FC<WishlistModalProps> = ({
           {activeItems.length === 0 ? (
             <div className="text-center py-12 space-y-3">
               <Heart className="w-10 h-10 text-[#C5A880]/30 mx-auto" />
-              <p className="text-sm text-[#A89B90]">هنوز اثری به برگزیده‌ها اضافه نشده است.</p>
+              <p className="text-sm text-[#A89B90] dark:text-[#A89B90] text-stone-500">هنوز اثری به برگزیده‌ها اضافه نشده است.</p>
             </div>
           ) : (
             activeItems.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between p-3.5 rounded-2xl bg-[#14100E] border border-white/10 gap-3"
+                className="flex items-center justify-between p-3.5 rounded-2xl bg-[#14100E] dark:bg-[#14100E] bg-[#FAF7F2] border border-white/10 dark:border-white/10 border-stone-200 gap-3"
               >
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-14 h-18 object-cover rounded-xl border border-white/10"
+                  className="w-14 h-18 object-cover rounded-xl border border-white/10 dark:border-white/10 border-stone-200"
                 />
                 <div className="flex-1 min-w-0">
-                  <h4 className="text-sm font-bold text-white truncate">
+                  <h4 className="text-sm font-bold text-white dark:text-white text-stone-900 truncate">
                     {item.title}
                   </h4>
-                  <div className="text-xs text-[#A89B90] mt-0.5">{item.fabric}</div>
-                  <div className="text-sm font-extrabold text-[#E5CCA8] mt-1 font-display">{item.priceFormatted}</div>
+                  <div className="text-xs text-[#A89B90] dark:text-[#A89B90] text-stone-500 mt-0.5">{item.fabric}</div>
+                  <div className="text-sm font-extrabold text-[#E5CCA8] dark:text-[#E5CCA8] text-stone-900 mt-1 font-display">{item.priceFormatted}</div>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
@@ -80,7 +80,7 @@ export const WishlistModal: React.FC<WishlistModalProps> = ({
                   </button>
                   <button
                     onClick={() => onRemoveFromWishlist(item)}
-                    className="p-2.5 rounded-full bg-white/5 border border-white/10 text-[#8E827A] hover:text-red-400 transition-colors cursor-pointer"
+                    className="p-2.5 rounded-full bg-white/5 dark:bg-white/5 bg-stone-100 border border-white/10 dark:border-white/10 border-stone-300 text-[#8E827A] hover:text-red-400 transition-colors cursor-pointer"
                     title="حذف"
                   >
                     <Trash2 className="w-3.5 h-3.5" />

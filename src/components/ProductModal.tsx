@@ -91,13 +91,13 @@ export const ProductModal: React.FC<ProductModalProps> = ({
       <div className="fixed inset-0" onClick={onClose} />
 
       {/* Modal Dialog Card */}
-      <div className="bg-[#181411] rounded-2xl sm:rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto z-10 border border-white/10 flex flex-col md:flex-row relative animate-pop text-right">
+      <div className="bg-[#181411] dark:bg-[#181411] bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto z-10 border border-white/10 dark:border-white/10 border-stone-200 flex flex-col md:flex-row relative animate-pop text-right">
         
         {/* Left Column (in RTL: Lookbook Gallery) */}
-        <div className="md:w-1/2 p-5 sm:p-7 flex flex-col justify-between bg-[#14100E] border-b md:border-b-0 md:border-l border-white/10">
+        <div className="md:w-1/2 p-5 sm:p-7 flex flex-col justify-between bg-[#14100E] dark:bg-[#14100E] bg-[#FAF7F2] border-b md:border-b-0 md:border-l border-white/10 dark:border-white/10 border-stone-200">
           
           {/* Main Visual Frame */}
-          <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden bg-[#1E1915] border border-white/10 shadow-md relative group">
+          <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden bg-[#1E1915] dark:bg-[#1E1915] bg-[#EDE6DD] border border-white/10 dark:border-white/10 border-stone-200 shadow-md relative group">
             <SafeImage
               key={mainSrc}
               src={mainSrc}
@@ -123,7 +123,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                   className={`w-14 h-18 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${
                     mainSrc === img
                       ? 'border-[#C5A880] shadow-md scale-105'
-                      : 'border-white/10 opacity-70 hover:opacity-100'
+                      : 'border-white/10 dark:border-white/10 border-stone-300 opacity-70 hover:opacity-100'
                   }`}
                 >
                   <SafeImage
@@ -145,7 +145,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
           <div className="space-y-4">
             
             {/* Top Toolbar: Code on Right, Actions on Left */}
-            <div className="flex items-center justify-between pb-3.5 border-b border-white/10">
+            <div className="flex items-center justify-between pb-3.5 border-b border-white/10 dark:border-white/10 border-stone-200">
               <span
                 className="font-latin text-[11px] uppercase tracking-wider text-[#C5A880] font-bold"
                 dir="ltr"
@@ -158,13 +158,13 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                 {onToggleWishlist && (
                   <button
                     onClick={(e) => onToggleWishlist(product, e)}
-                    className="w-8 h-8 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-white/90 hover:border-[#C5A880] transition-all cursor-pointer active:scale-110"
+                    className="w-8 h-8 rounded-full border border-white/15 dark:border-white/15 border-stone-300 bg-white/5 dark:bg-white/5 bg-stone-100 flex items-center justify-center text-white/90 dark:text-white/90 text-stone-700 hover:border-[#C5A880] transition-all cursor-pointer active:scale-110"
                     title={isWishlisted ? 'حذف از برگزیده‌ها' : 'افزودن به برگزیده‌ها'}
                     aria-label="افزودن به برگزیده‌ها"
                   >
                     <Heart
                       className={`w-4 h-4 crossfade-icon ${
-                        isWishlisted ? 'fill-[#C5A880] text-[#C5A880]' : 'text-white/80'
+                        isWishlisted ? 'fill-[#C5A880] text-[#C5A880]' : 'text-stone-700 dark:text-white/80'
                       }`}
                     />
                   </button>
@@ -172,7 +172,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                 
                 <button
                   onClick={onClose}
-                  className="w-8 h-8 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-white/80 hover:text-white hover:border-white/30 transition-colors cursor-pointer"
+                  className="w-8 h-8 rounded-full border border-white/15 dark:border-white/15 border-stone-300 bg-white/5 dark:bg-white/5 bg-stone-100 flex items-center justify-center text-white/80 dark:text-white/80 text-stone-700 hover:text-white transition-colors cursor-pointer"
                   aria-label="بستن پنجره"
                 >
                   <X className="w-4 h-4" />
@@ -182,27 +182,27 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 
             {/* Title, Fabric, Price */}
             <div className="space-y-1.5">
-              <h2 className="font-display text-xl sm:text-2xl text-white font-bold tracking-tight">
+              <h2 className="font-display text-xl sm:text-2xl text-white dark:text-white text-stone-900 font-bold tracking-tight">
                 {product.title}
               </h2>
-              <div className="text-xs text-[#A89B90] font-medium">{product.fabric} • {product.origin}</div>
-              <div className="text-xl font-extrabold text-[#E5CCA8] pt-1">{product.priceFormatted}</div>
+              <div className="text-xs text-[#A89B90] dark:text-[#A89B90] text-stone-500 font-medium">{product.fabric} • {product.origin}</div>
+              <div className="text-xl font-extrabold text-[#E5CCA8] dark:text-[#E5CCA8] text-stone-900 pt-1">{product.priceFormatted}</div>
             </div>
 
             {/* Description */}
-            <p className="text-sm text-[#A89B90] leading-relaxed font-normal">
+            <p className="text-sm text-[#A89B90] dark:text-[#A89B90] text-stone-600 leading-relaxed font-normal">
               {product.description}
             </p>
 
             {/* Size Selector */}
             <div className="space-y-2.5 pt-1">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-bold text-white">
+                <span className="text-sm font-bold text-white dark:text-white text-stone-900">
                   انتخاب سایز: <strong className="text-[#C5A880]">{selectedSize}</strong>
                 </span>
                 <button
                   onClick={() => setIsSizeGuideOpen(!isSizeGuideOpen)}
-                  className="flex items-center gap-1 text-xs text-[#C5A880] hover:text-white transition-colors cursor-pointer"
+                  className="flex items-center gap-1 text-xs text-[#C5A880] hover:underline transition-colors cursor-pointer"
                 >
                   <Ruler className="w-3.5 h-3.5" />
                   <span>راهنمای سایز</span>
@@ -217,7 +217,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                     className={`py-2.5 rounded-xl text-sm font-bold border transition-all cursor-pointer ${
                       selectedSize === sz
                         ? 'bg-[#C5A880] text-[#120E0C] border-[#C5A880] shadow-md font-bold'
-                        : 'bg-[#1E1915] text-[#A89B90] border-white/10 hover:border-white/20 hover:text-white'
+                        : 'bg-[#1E1915] dark:bg-[#1E1915] bg-white text-[#A89B90] dark:text-[#A89B90] text-stone-700 border-white/10 dark:border-white/10 border-stone-300 hover:border-stone-400'
                     }`}
                   >
                     {sz}
@@ -227,8 +227,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 
               {/* Size Guide Info */}
               {isSizeGuideOpen && (
-                <div className="p-3 bg-[#14100E] rounded-xl border border-white/10 text-xs text-[#A89B90] space-y-1 animate-fade-in">
-                  <div className="font-semibold text-white">استاندارد دور سینه و کمر آتلیه:</div>
+                <div className="p-3 bg-[#14100E] dark:bg-[#14100E] bg-[#FAF7F2] rounded-xl border border-white/10 dark:border-white/10 border-stone-200 text-xs text-[#A89B90] dark:text-[#A89B90] text-stone-600 space-y-1 animate-fade-in">
+                  <div className="font-semibold text-white dark:text-white text-stone-900">استاندارد دور سینه و کمر آتلیه:</div>
                   <div>۳۶ (۸۴-۸۸) • ۳۸ (۸۸-۹۲) • ۴۰ (۹۲-۹۶) • ۴۲ (۹۶-۱۰۰)</div>
                   <div className="text-[11px] text-[#C5A880]">✦ امکان تنظیم قد و سایز سفارشی در تلگرام فراهم است.</div>
                 </div>
@@ -237,7 +237,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 
             {/* Color Swatches */}
             <div className="space-y-2.5">
-              <span className="text-sm font-bold text-white">
+              <span className="text-sm font-bold text-white dark:text-white text-stone-900">
                 رنگ: <strong className="text-[#C5A880]">{selectedColor}</strong>
               </span>
               <div className="flex items-center gap-2.5">
@@ -250,11 +250,11 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                       className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs border transition-all cursor-pointer ${
                         isSelected
                           ? 'bg-[#C5A880]/15 border-[#C5A880] text-[#C5A880] font-bold shadow-sm'
-                          : 'bg-[#1E1915] border-white/10 text-[#A89B90] hover:border-white/25 hover:text-white'
+                          : 'bg-[#1E1915] dark:bg-[#1E1915] bg-white border-white/10 dark:border-white/10 border-stone-300 text-[#A89B90] dark:text-[#A89B90] text-stone-700 hover:border-stone-400'
                       }`}
                     >
                       <span
-                        className="w-3.5 h-3.5 rounded-full border border-white/20 shrink-0"
+                        className="w-3.5 h-3.5 rounded-full border border-white/20 dark:border-white/20 border-stone-300 shrink-0"
                         style={{ backgroundColor: c.hex }}
                       />
                       <span>{c.name}</span>
@@ -267,24 +267,24 @@ export const ProductModal: React.FC<ProductModalProps> = ({
           </div>
 
           {/* Stepper + Add to Cart Button */}
-          <div className="pt-4 border-t border-white/10">
+          <div className="pt-4 border-t border-white/10 dark:border-white/10 border-stone-200">
             <div className="flex items-center gap-2.5">
               
               {/* Stepper */}
-              <div className="flex items-center gap-0.5 bg-[#14100E] border border-white/10 rounded-full p-1 shrink-0">
+              <div className="flex items-center gap-0.5 bg-[#14100E] dark:bg-[#14100E] bg-[#FAF7F2] border border-white/10 dark:border-white/10 border-stone-300 rounded-full p-1 shrink-0">
                 <button
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white/90 hover:bg-white/10 transition-colors cursor-pointer"
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-white/90 dark:text-white/90 text-stone-700 hover:bg-white/10 dark:hover:bg-white/10 hover:bg-stone-200 transition-colors cursor-pointer"
                   aria-label="کم کردن تعداد"
                 >
                   <Minus className="w-3.5 h-3.5" />
                 </button>
-                <span className="w-6 text-center text-sm font-extrabold text-white">
+                <span className="w-6 text-center text-sm font-extrabold text-white dark:text-white text-stone-900">
                   {toPersianDigits(quantity)}
                 </span>
                 <button
                   onClick={() => setQuantity((q) => Math.min(9, q + 1))}
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white/90 hover:bg-white/10 transition-colors cursor-pointer"
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-white/90 dark:text-white/90 text-stone-700 hover:bg-white/10 dark:hover:bg-white/10 hover:bg-stone-200 transition-colors cursor-pointer"
                   aria-label="زیاد کردن تعداد"
                 >
                   <Plus className="w-3.5 h-3.5" />

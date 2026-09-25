@@ -45,9 +45,9 @@ export const CategoryFilterBar: React.FC<CategoryFilterBarProps> = ({
   return (
     <div
       id="catalog-filter-bar"
-      className="sticky top-[70px] sm:top-[88px] z-30 bg-[#120E0C]/90 backdrop-blur-md py-3.5 border-y border-white/10 select-none transition-all"
+      className="sticky top-16 sm:top-[72px] z-30 bg-[#120E0C]/95 dark:bg-[#120E0C]/95 bg-[#F6F2EC]/95 backdrop-blur-md py-3.5 border-y border-white/10 dark:border-white/10 border-stone-200 select-none transition-all shadow-xs"
     >
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-3.5">
+      <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-3.5">
         
         {/* Category Pills (Horizontal Scroll on Mobile) */}
         <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 no-scrollbar">
@@ -57,10 +57,10 @@ export const CategoryFilterBar: React.FC<CategoryFilterBarProps> = ({
               <button
                 key={cat.id}
                 onClick={() => onSelectCategory(cat.id)}
-                className={`flex items-center gap-1.5 px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer active:scale-95 ${
+                className={`flex items-center gap-1.5 px-5 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer active:scale-95 ${
                   isActive
                     ? 'bg-[#C5A880] text-[#120E0C] font-bold shadow-md shadow-[#C5A880]/15'
-                    : 'bg-[#181411] text-[#A89B90] hover:text-white hover:bg-[#1E1915] border border-white/10'
+                    : 'bg-[#181411] dark:bg-[#181411] bg-white text-[#A89B90] dark:text-[#A89B90] text-stone-700 hover:text-white dark:hover:text-white hover:text-stone-900 border border-white/10 dark:border-white/10 border-stone-300'
                 }`}
               >
                 <span>{cat.label}</span>
@@ -73,23 +73,23 @@ export const CategoryFilterBar: React.FC<CategoryFilterBarProps> = ({
         <div className="flex items-center justify-between md:justify-end gap-5 w-full md:w-auto text-xs">
           
           {/* Active Product Count */}
-          <span className="text-[#A89B90] text-xs sm:text-sm whitespace-nowrap">
-            نمایش <strong className="text-white font-bold">{toPersianDigits(productCount)}</strong> اثر
+          <span className="text-[#A89B90] dark:text-[#A89B90] text-stone-600 text-xs sm:text-sm whitespace-nowrap">
+            نمایش <strong className="text-white dark:text-white text-stone-900 font-bold">{toPersianDigits(productCount)}</strong> اثر
           </span>
 
           {/* Luxury Sort Dropdown */}
           <div className="relative" ref={sortRef}>
             <button
               onClick={() => setIsSortOpen(!isSortOpen)}
-              className="flex items-center gap-2 bg-[#181411] hover:bg-[#1E1915] border border-white/10 hover:border-white/20 px-4 py-2 rounded-full text-xs sm:text-sm text-white/90 font-medium transition-all shadow-sm cursor-pointer"
+              className="flex items-center gap-2 bg-[#181411] dark:bg-[#181411] bg-white hover:bg-[#1E1915] border border-white/10 dark:border-white/10 border-stone-300 px-4 py-2 rounded-full text-xs sm:text-sm text-white/90 dark:text-white/90 text-stone-800 font-medium transition-all shadow-sm cursor-pointer"
             >
               <ArrowUpDown className="w-3.5 h-3.5 text-[#C5A880]" />
               <span>{currentSortLabel}</span>
-              <ChevronDown className="w-3.5 h-3.5 text-[#A89B90]" />
+              <ChevronDown className="w-3.5 h-3.5 text-[#A89B90] dark:text-[#A89B90] text-stone-500" />
             </button>
 
             {isSortOpen && (
-              <div className="absolute left-0 mt-2 w-52 bg-[#1A1613] border border-white/15 rounded-xl shadow-2xl py-1.5 z-50 overflow-hidden text-xs animate-fade-in">
+              <div className="absolute left-0 mt-2 w-52 bg-[#1A1613] dark:bg-[#1A1613] bg-white border border-white/15 dark:border-white/15 border-stone-200 rounded-xl shadow-2xl py-1.5 z-50 overflow-hidden text-xs animate-fade-in text-right">
                 {sortOptions.map((opt) => (
                   <button
                     key={opt.value}
@@ -97,10 +97,10 @@ export const CategoryFilterBar: React.FC<CategoryFilterBarProps> = ({
                       onSortChange(opt.value);
                       setIsSortOpen(false);
                     }}
-                    className={`w-full text-right px-4 py-2.5 flex items-center justify-between hover:bg-white/5 transition-colors cursor-pointer ${
+                    className={`w-full text-right px-4 py-2.5 flex items-center justify-between hover:bg-white/5 dark:hover:bg-white/5 hover:bg-stone-100 transition-colors cursor-pointer ${
                       sortBy === opt.value
                         ? 'text-[#C5A880] font-bold bg-[#C5A880]/10'
-                        : 'text-[#A89B90]'
+                        : 'text-[#A89B90] dark:text-[#A89B90] text-stone-700'
                     }`}
                   >
                     <span>{opt.label}</span>

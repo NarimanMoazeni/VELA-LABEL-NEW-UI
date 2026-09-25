@@ -7,8 +7,8 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
   return (
-    <footer className="w-full bg-[#120E0C] border-t border-white/10 pt-14 pb-8 text-[#A89B90] select-none">
-      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8">
+    <footer className="w-full bg-[#120E0C] dark:bg-[#120E0C] bg-[#F3EDE6] border-t border-white/10 dark:border-white/10 border-stone-300 pt-14 pb-8 text-[#A89B90] dark:text-[#A89B90] text-stone-600 select-none transition-colors">
+      <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-8">
         
         {/* Main Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 lg:gap-10 mb-12">
@@ -22,7 +22,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
                 className="w-12 h-12 rounded-full object-cover border-2 border-[#C5A880]/70 shadow-sm"
               />
               <div className="flex flex-col text-right">
-                <span className="font-serif text-lg tracking-wider text-white font-bold uppercase">
+                <span className="font-serif text-lg tracking-wider text-white dark:text-white text-stone-900 font-bold uppercase">
                   VELA LABEL
                 </span>
                 <span className="font-latin text-[9px] uppercase text-[#C5A880] tracking-[0.22em] font-bold">
@@ -30,17 +30,17 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
                 </span>
               </div>
             </div>
-            <p className="text-sm text-[#A89B90] leading-relaxed">
+            <p className="text-sm text-[#A89B90] dark:text-[#A89B90] text-stone-600 leading-relaxed">
               آتلیه و مزون پوشاک زنانه ولا؛ طراحی اصیل، وقار در سیلوئت و دوخت تمام‌مزونی در اصفهان.
             </p>
           </div>
 
           {/* Col 2: Categories */}
           <div className="space-y-3.5 text-right">
-            <span className="text-sm font-bold tracking-wider text-white uppercase block">
+            <span className="text-sm font-bold tracking-wider text-white dark:text-white text-stone-900 uppercase block">
               کالکشن‌ها
             </span>
-            <ul className="space-y-2.5 text-sm text-[#A89B90]">
+            <ul className="space-y-2.5 text-sm text-[#A89B90] dark:text-[#A89B90] text-stone-600">
               <li>
                 <button
                   onClick={() => onSelectCategory && onSelectCategory('all')}
@@ -81,10 +81,10 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
 
           {/* Col 3: Services */}
           <div className="space-y-3.5 text-right">
-            <span className="text-sm font-bold tracking-wider text-white uppercase block">
+            <span className="text-sm font-bold tracking-wider text-white dark:text-white text-stone-900 uppercase block">
               خدمات آتلیه ولا
             </span>
-            <ul className="space-y-2.5 text-sm text-[#A89B90]">
+            <ul className="space-y-2.5 text-sm text-[#A89B90] dark:text-[#A89B90] text-stone-600">
               <li>ارسال با کاور اختصاصی و چوب‌لباسی نفیس</li>
               <li>امکان تغییر و تنظیم قد و سایز دقیق</li>
               <li>هماهنگی پرو حضوری در آتلیه اصفهان</li>
@@ -94,10 +94,10 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
 
           {/* Col 4: Contact & Socials */}
           <div className="space-y-3.5 text-right">
-            <span className="text-sm font-bold tracking-wider text-white uppercase block">
+            <span className="text-sm font-bold tracking-wider text-white dark:text-white text-stone-900 uppercase block">
               ارتباط و سفارش
             </span>
-            <p className="text-sm text-[#A89B90] leading-relaxed">
+            <p className="text-sm text-[#A89B90] dark:text-[#A89B90] text-stone-600 leading-relaxed">
               جهت استعلام موجودی سایز و ثبت سفارش اختصاصی با ما در ارتباط باشید.
             </p>
             <div className="flex flex-col gap-2.5 pt-1">
@@ -105,7 +105,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
                 href="https://t.me/velalabel"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 py-2.5 px-4 rounded-full border border-white/10 bg-white/5 hover:border-[#C5A880] text-white hover:text-[#C5A880] transition-all text-xs font-medium w-fit"
+                className="inline-flex items-center gap-2 py-2.5 px-4 rounded-full border border-white/10 dark:border-white/10 border-stone-300 bg-white/5 dark:bg-white/5 bg-white hover:border-[#C5A880] text-white dark:text-white text-stone-800 hover:text-[#C5A880] transition-all text-xs font-medium w-fit"
               >
                 <Send className="w-3.5 h-3.5 text-[#C5A880]" />
                 <span>پشتیبانی تلگرام: velalabel@</span>
@@ -114,7 +114,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
                 href="https://instagram.com/velalabel"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 py-2.5 px-4 rounded-full border border-white/10 bg-white/5 hover:border-[#C5A880] text-white hover:text-[#C5A880] transition-all text-xs font-medium w-fit"
+                className="inline-flex items-center gap-2 py-2.5 px-4 rounded-full border border-white/10 dark:border-white/10 border-stone-300 bg-white/5 dark:bg-white/5 bg-white hover:border-[#C5A880] text-white dark:text-white text-stone-800 hover:text-[#C5A880] transition-all text-xs font-medium w-fit"
               >
                 <Instagram className="w-3.5 h-3.5 text-[#C5A880]" />
                 <span>اینستاگرام ولا: velalabel@</span>
@@ -125,7 +125,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#8E827A]">
+        <div className="pt-6 border-t border-white/10 dark:border-white/10 border-stone-300 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#8E827A] dark:text-[#8E827A] text-stone-500">
           <div>
             © ۲۰۲۶ مزون زنانه VELA LABEL • تمامی حقوق محفوظ است.
           </div>

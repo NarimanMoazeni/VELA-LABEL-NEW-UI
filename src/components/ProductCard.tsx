@@ -40,11 +40,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     <div
       onClick={() => onOpenModal(product)}
       style={{ animationDelay: `${index * 80}ms` }}
-      className="group relative flex flex-col w-full h-full bg-[#181411] hover:bg-[#1C1814] rounded-[22px] overflow-hidden border border-white/10 hover:border-[#C5A880]/50 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer stagger-item select-none"
+      className="group relative flex flex-col w-full h-full bg-[#181411] dark:bg-[#181411] bg-white rounded-[22px] overflow-hidden border border-white/10 dark:border-white/10 border-stone-200 hover:border-[#C5A880]/70 dark:hover:border-[#C5A880]/70 shadow-sm hover:shadow-2xl transition-all duration-300 cursor-pointer stagger-item select-none text-right"
       id={`product-card-${product.id}`}
     >
       {/* 1. Visual Frame: 3:4 Aspect Ratio Image */}
-      <div className="relative aspect-[3/4] overflow-hidden bg-[#1E1915]">
+      <div className="relative aspect-[3/4] overflow-hidden bg-[#1E1915] dark:bg-[#1E1915] bg-[#F7F4EE]">
         <SafeImage
           key={safeList[current]}
           src={safeList[current]}
@@ -57,9 +57,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Top-Right Badge (RTL start) */}
         {product.badge && (
-          <div className="absolute top-3 right-3 z-10">
+          <div className="absolute top-3.5 right-3.5 z-10">
             {product.badgeType === 'limited' ? (
-              <span className="bg-black/60 backdrop-blur-md border border-white/15 text-white/90 text-[11px] font-medium px-3 py-1 rounded-full shadow-sm">
+              <span className="bg-black/60 dark:bg-black/60 bg-stone-900/80 backdrop-blur-md border border-white/15 text-white/95 text-[11px] font-medium px-3 py-1 rounded-full shadow-sm">
                 {product.badge}
               </span>
             ) : (
@@ -73,7 +73,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Top-Left Wishlist Button (RTL end) */}
         <button
           onClick={(e) => onToggleWishlist(product, e)}
-          className={`absolute top-3 left-3 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 z-10 cursor-pointer skip-delay active:scale-110 ${
+          className={`absolute top-3.5 left-3.5 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 z-10 cursor-pointer skip-delay active:scale-110 ${
             isWishlisted
               ? 'bg-[#C5A880] text-[#120E0C] shadow-md'
               : 'bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/15 text-white/90 hover:text-white'
@@ -92,7 +92,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {safeList.length > 1 && (
           <button
             onClick={stepGallery}
-            className="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/15 text-white/80 hover:text-white flex items-center justify-center transition-all cursor-pointer z-10 active:scale-90"
+            className="absolute bottom-3.5 right-3.5 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/15 text-white/80 hover:text-white flex items-center justify-center transition-all cursor-pointer z-10 active:scale-90"
             title="تصویر بعدی"
             aria-label="مشاهده تصویر بعدی"
           >
@@ -100,41 +100,41 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </button>
         )}
 
-        {/* Bottom soft shadow vignette */}
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#181411]/80 to-transparent pointer-events-none" />
+        {/* Bottom soft shadow vignette in dark mode */}
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
       </div>
 
       {/* 2. Product Info Area (RTL right-aligned) */}
-      <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between text-right space-y-3">
+      <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between space-y-3">
         
         {/* Code & Title */}
         <div className="space-y-1">
           <div
-            className="font-latin text-[10.5px] uppercase font-semibold text-[#8E827A] tracking-wider"
+            className="font-latin text-[10.5px] uppercase font-semibold text-[#8E827A] dark:text-[#8E827A] text-stone-500 tracking-wider"
             dir="ltr"
           >
             {product.code}
           </div>
 
-          <h3 className="font-display text-base font-bold text-white group-hover:text-[#C5A880] transition-colors leading-snug line-clamp-1">
+          <h3 className="font-display text-base font-bold text-white dark:text-white text-stone-900 group-hover:text-[#C5A880] transition-colors leading-snug line-clamp-1">
             {product.title}
           </h3>
         </div>
 
         {/* Price */}
-        <div className="font-display text-base font-extrabold text-[#E5CCA8]">
+        <div className="font-display text-base font-extrabold text-[#E5CCA8] dark:text-[#E5CCA8] text-stone-900">
           {product.priceFormatted}
         </div>
 
         {/* Bottom Row: Swatches on Right + Cart Button on Left */}
-        <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+        <div className="pt-2.5 border-t border-white/10 dark:border-white/10 border-stone-200 flex items-center justify-between">
           
           {/* Color Swatch Dots */}
           <div className="flex items-center gap-1.5">
             {product.colors.map((color, idx) => (
               <span
                 key={idx}
-                className="w-3.5 h-3.5 rounded-full border border-white/25 shadow-xs"
+                className="w-3.5 h-3.5 rounded-full border border-white/25 dark:border-white/25 border-stone-300 shadow-xs"
                 style={{ backgroundColor: color.hex }}
                 title={color.name}
               />
