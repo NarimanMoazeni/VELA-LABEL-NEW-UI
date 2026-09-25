@@ -67,10 +67,10 @@ export const PRODUCTS: Product[] = [
     priceFormatted: '۳,۸۵۰,۰۰۰ تومان',
     badge: 'پرفروش‌ترین',
     badgeType: 'new',
-    image: '/products/vla-adl-002.webp',
+    image: '/products/vla-adl-001.webp',
     gallery: [
-      '/products/vla-adl-002.webp',
-      '/products/vla-adl-001.webp'
+      '/products/vla-adl-001.webp',
+      '/products/vla-adl-002.webp'
     ],
     fabric: 'کرپ مازراتی درجه یک وارداتی',
     origin: 'آتلیه تخصصی ولا • اصفهان',

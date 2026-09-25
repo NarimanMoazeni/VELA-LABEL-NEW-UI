@@ -117,6 +117,69 @@ html:not(.dark) {
   background: #C5A880;
 }
 
+/* Theme-Aware Hero & Category Card Gradients (Dark Mode & Light Mode) */
+.hero-gradient-desktop {
+  background: linear-gradient(
+    to right,
+    rgba(246, 242, 236, 0.98) 0%,
+    rgba(246, 242, 236, 0.92) 34%,
+    rgba(246, 242, 236, 0.65) 50%,
+    rgba(246, 242, 236, 0.12) 68%,
+    transparent 100%
+  );
+}
+
+html.dark .hero-gradient-desktop {
+  background: linear-gradient(
+    to right,
+    rgba(18, 14, 12, 0.98) 0%,
+    rgba(18, 14, 12, 0.91) 34%,
+    rgba(18, 14, 12, 0.62) 50%,
+    rgba(18, 14, 12, 0.12) 68%,
+    transparent 100%
+  );
+}
+
+.hero-gradient-mobile {
+  background: linear-gradient(
+    to top,
+    rgba(246, 242, 236, 0.98) 0%,
+    rgba(246, 242, 236, 0.90) 48%,
+    rgba(246, 242, 236, 0.35) 76%,
+    transparent 100%
+  );
+}
+
+html.dark .hero-gradient-mobile {
+  background: linear-gradient(
+    to top,
+    rgba(18, 14, 12, 0.98) 0%,
+    rgba(18, 14, 12, 0.88) 48%,
+    rgba(18, 14, 12, 0.35) 76%,
+    transparent 100%
+  );
+}
+
+.cat-card-overlay {
+  background: linear-gradient(
+    to left,
+    rgba(242, 235, 226, 0.96) 0%,
+    rgba(238, 229, 218, 0.88) 38%,
+    rgba(238, 229, 218, 0.42) 62%,
+    rgba(246, 242, 236, 0.04) 100%
+  );
+}
+
+html.dark .cat-card-overlay {
+  background: linear-gradient(
+    to left,
+    rgba(24, 19, 15, 0.96) 0%,
+    rgba(28, 22, 18, 0.88) 38%,
+    rgba(28, 22, 18, 0.45) 62%,
+    rgba(18, 14, 12, 0.05) 100%
+  );
+}
+
 /* Hide scrollbar utility */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

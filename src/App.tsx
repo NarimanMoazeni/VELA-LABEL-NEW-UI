@@ -3,7 +3,6 @@ import { ArrowUp } from 'lucide-react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { CategoryPromoBanners } from './components/CategoryPromoBanners';
-import { CategoryFilterBar } from './components/CategoryFilterBar';
 import { ProductCard } from './components/ProductCard';
 import { ProductSkeleton } from './components/ProductSkeleton';
 import { AtelierConcierge } from './components/AtelierConcierge';
@@ -13,7 +12,7 @@ import { Reveal } from './components/Reveal';
 import { WishlistModal } from './components/WishlistModal';
 import { ProductModal } from './components/ProductModal';
 import { CartDrawer } from './components/CartDrawer';
-import { PRODUCTS, CATEGORIES } from './data/products';
+import { PRODUCTS } from './data/products';
 import { Product, CartItem, CustomerOrderData, ToastData } from './types';
 
 export default function App() {
@@ -123,7 +122,7 @@ export default function App() {
   };
 
   const handleScrollToCatalog = () => {
-    const el = document.getElementById('catalog-filter-bar');
+    const el = document.getElementById('catalog-section');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -274,34 +273,27 @@ export default function App() {
           featuredProducts={PRODUCTS.slice(0, 3)}
         />
 
-        {/* 3. Full-Width Trust Bar + 3 Category Showcase Cards (Reference 2) */}
-        <CategoryPromoBanners onSelectCategory={handleCategorySelect} />
+        {/* 3. Full-Width Trust Bar + 3 Category Showcase Cards (Primary Navigation) */}
+        <CategoryPromoBanners
+          selectedCategory={selectedCategory}
+          onSelectCategory={handleCategorySelect}
+        />
 
-        {/* 4. Category Filter & Sort Bar (Clean transition without Best Sellers banner) */}
-        <section id="catalog-section" className="w-full scroll-mt-[72px]">
-          <CategoryFilterBar
-            selectedCategory={selectedCategory}
-            onSelectCategory={handleCategorySelect}
-            categories={CATEGORIES}
-            productCount={filteredProducts.length}
-            sortBy={sortBy}
-            onSortChange={setSortBy}
-          />
-
-          {/* 5. Product Cards Grid (3-Column Grid) */}
+        {/* 4. Product Cards Grid (Aligned 3-Column Grid directly below Category Cards) */}
+        <section id="catalog-section" className="w-full scroll-mt-[80px]">
           <div
             id="catalog-grid"
-            className="w-full max-w-[1800px] mx-auto px-4 sm:px-8 py-8 sm:py-12 scroll-mt-[160px]"
+            className="w-full max-w-[1360px] mx-auto px-4 sm:px-8 pt-2 pb-12 sm:pb-16"
           >
             {isCategoryLoading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-[1400px] mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {Array.from({ length: 3 }).map((_, i) => (
                   <ProductSkeleton key={i} />
                 ))}
               </div>
             ) : filteredProducts.length === 0 ? (
-              <div className="text-center py-16 bg-[#181411] dark:bg-[#181411] bg-white rounded-3xl border border-white/10 dark:border-white/10 border-stone-200 space-y-4 px-4 max-w-xl mx-auto shadow-md">
-                <p className="font-display text-base sm:text-lg text-white dark:text-white text-stone-900 font-semibold">
+              <div className="text-center py-16 bg-white dark:bg-[#181411] rounded-3xl border border-stone-200 dark:border-white/10 space-y-4 px-4 max-w-xl mx-auto shadow-md">
+                <p className="font-display text-base sm:text-lg text-stone-900 dark:text-white font-semibold">
                   هیچ اثری با مشخصات انتخابی شما یافت نشد.
                 </p>
                 <button
@@ -317,7 +309,7 @@ export default function App() {
             ) : (
               <div
                 key={selectedCategory}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-[1400px] mx-auto"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
               >
                 {filteredProducts.map((product, idx) => (
                   <ProductCard

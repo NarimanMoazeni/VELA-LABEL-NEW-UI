@@ -1,17 +1,19 @@
 import React from 'react';
-import { ArrowLeft, Award, ShieldCheck, Truck } from 'lucide-react';
+import { ArrowLeft, BadgeCheck, ShieldCheck, Truck, RotateCcw } from 'lucide-react';
 import { Reveal } from './Reveal';
 
 interface CategoryPromoBannersProps {
+  selectedCategory?: string;
   onSelectCategory: (categoryId: string) => void;
 }
 
 export const CategoryPromoBanners: React.FC<CategoryPromoBannersProps> = ({
+  selectedCategory = 'all',
   onSelectCategory,
 }) => {
   const trustItems = [
     {
-      icon: Award,
+      icon: BadgeCheck,
       title: 'ضمانت کیفیت',
       desc: 'تضمین اصالت کالا و دوخت مزونی',
     },
@@ -32,99 +34,145 @@ export const CategoryPromoBanners: React.FC<CategoryPromoBannersProps> = ({
       id: 'bespoke',
       title: 'شخصی‌دوزی مزون',
       image: '/products/cat-bespoke.webp',
-      imgStyle: 'object-cover object-top',
     },
     {
       id: 'set',
       title: 'ست وست و شلوار',
       image: '/products/cat-set.webp',
-      imgStyle: 'object-cover object-top',
     },
     {
       id: 'blazer',
       title: 'کت و بلیزر',
       image: '/products/cat-blazer.webp',
-      imgStyle: 'object-contain object-bottom',
-      hasInnerFrame: true,
     },
   ];
+
+  const handleCardClick = (cardId: string) => {
+    if (cardId === 'bespoke') {
+      onSelectCategory('bespoke');
+      return;
+    }
+    // Toggle behavior: clicking an already active category returns to 'all'
+    if (selectedCategory === cardId) {
+      onSelectCategory('all');
+    } else {
+      onSelectCategory(cardId);
+    }
+  };
 
   return (
     <div className="w-full select-none">
       
-      {/* 1. Full-Width Integrated Trust Strip (directly under Hero, matching Reference 1 media_1790347087207.png) */}
-      <div className="w-full bg-[#120E0C] dark:bg-[#120E0C] bg-[#F2EDE7] border-b border-[#2E251E] dark:border-white/10 border-stone-300 py-3.5 sm:py-4 px-4 sm:px-8">
-        <div className="w-full max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x md:divide-x-reverse divide-[#2E251E] dark:divide-white/10 divide-stone-300">
+      {/* 1. Refined, Minimalist Trust Strip (Organically connected below Hero, matching Reference 1) */}
+      <div className="w-full bg-[#EFE9E0] dark:bg-[#14100D] border-b border-stone-300/80 dark:border-white/10 py-3.5 sm:py-4 px-4 sm:px-8 transition-colors duration-300">
+        <div className="w-full max-w-[940px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
           {trustItems.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <div
-                key={idx}
-                className="flex items-center justify-center gap-3 py-2.5 md:py-1 px-4 text-center md:text-right"
-              >
-                <div className="w-9 h-9 rounded-full bg-[#C5A880]/15 flex items-center justify-center shrink-0">
-                  <Icon className="w-4 h-4 text-[#C5A880]" />
+              <React.Fragment key={idx}>
+                <div className="flex items-center justify-center gap-3.5 px-2">
+                  {/* Right-Aligned Text Hierarchy */}
+                  <div className="flex flex-col text-right">
+                    <span className="text-xs sm:text-[13.5px] font-bold text-[#1C1613] dark:text-white leading-snug">
+                      {item.title}
+                    </span>
+                    <span className="text-[11px] text-[#6B5D52] dark:text-[#9E9287] mt-0.5 leading-tight">
+                      {item.desc}
+                    </span>
+                  </div>
+
+                  {/* Minimalist Line Icon (Directly to the left of text, matching Reference 1) */}
+                  <Icon
+                    className="w-5 h-5 text-[#8C6D46] dark:text-[#D2B998] shrink-0"
+                    strokeWidth={1.6}
+                  />
                 </div>
-                <div className="flex flex-col text-right">
-                  <span className="text-xs sm:text-sm font-bold text-white dark:text-white text-stone-900">
-                    {item.title}
-                  </span>
-                  <span className="text-[11px] text-[#A89B90] dark:text-[#A89B90] text-stone-600">
-                    {item.desc}
-                  </span>
-                </div>
-              </div>
+
+                {/* Vertical Divider ONLY between items (2 dividers total on desktop) */}
+                {idx < trustItems.length - 1 && (
+                  <div
+                    className="hidden sm:block h-7 w-[1px] bg-stone-300 dark:bg-white/12 shrink-0"
+                    aria-hidden="true"
+                  />
+                )}
+              </React.Fragment>
             );
           })}
         </div>
       </div>
 
-      {/* 2. Visual Category Showcase Cards (matching Reference 2 media_1790347625640.png) */}
-      <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-8 py-8 sm:py-10">
+      {/* 2. 3 Bespoke Category Showcase Cards (Primary Category Navigation with Dynamic Image Overlay Text) */}
+      <div className="w-full max-w-[1360px] mx-auto px-4 sm:px-8 pt-8 sm:pt-10 pb-3 sm:pb-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-          {categoryCards.map((card, idx) => (
-            <Reveal key={card.id} delay={idx * 80} className="h-full">
-              <div
-                onClick={() => onSelectCategory(card.id)}
-                className="group relative h-[145px] sm:h-[165px] lg:h-[175px] rounded-2xl sm:rounded-[20px] overflow-hidden border border-[#3E3228] dark:border-white/10 border-stone-300 bg-gradient-to-l from-[#251D16] via-[#352A20] to-[#453629] dark:from-[#251D16] dark:via-[#352A20] dark:to-[#453629] from-[#ECE3D8] via-[#DFD2C2] to-[#D2C0AC] flex items-center justify-between p-5 sm:p-6 cursor-pointer shadow-md hover:shadow-2xl hover:border-[#C5A880]/80 transition-all duration-300"
-              >
-                {/* Content Side (Right in RTL, matching Reference 2) */}
-                <div className="z-10 flex items-center gap-2.5 text-right">
-                  <h3 className="font-display text-base sm:text-lg lg:text-xl font-bold text-white dark:text-white text-stone-900 group-hover:text-[#C5A880] transition-colors leading-snug">
-                    {card.title}
-                  </h3>
-                  <ArrowLeft className="w-4 h-4 text-white/80 dark:text-white/80 text-stone-700 group-hover:text-[#C5A880] group-hover:-translate-x-1 transition-all" />
-                </div>
+          {categoryCards.map((card, idx) => {
+            const isActive = selectedCategory === card.id;
+            return (
+              <Reveal key={card.id} delay={idx * 70} className="h-full">
+                <div
+                  onClick={() => handleCardClick(card.id)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleCardClick(card.id);
+                    }
+                  }}
+                  aria-pressed={isActive}
+                  className={`group relative h-[150px] sm:h-[168px] lg:h-[180px] rounded-[20px] overflow-hidden border transition-all duration-300 cursor-pointer flex items-center justify-start px-6 sm:px-7 ${
+                    isActive
+                      ? 'border-[#C5A880] ring-2 ring-[#C5A880]/30 shadow-xl'
+                      : 'border-stone-300/90 dark:border-white/12 hover:border-[#C5A880]/80 shadow-md hover:shadow-2xl'
+                  }`}
+                >
+                  {/* Full-Card Seamless Editorial Image */}
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="absolute inset-0 w-full h-full object-cover object-left group-hover:scale-105 transition-transform duration-700 ease-out pointer-events-none"
+                    loading="lazy"
+                  />
 
-                {/* Left Side: Visual Frame (filling the left side) */}
-                <div className="absolute inset-y-0 left-0 w-[46%] sm:w-[48%] overflow-hidden flex items-end justify-center pointer-events-none">
-                  {card.hasInnerFrame ? (
-                    /* Black blazer hanger card with beige inner backdrop frame */
-                    <div className="w-[85%] h-[90%] rounded-t-xl bg-[#E8DFD5] dark:bg-[#DCD4C8] shadow-inner overflow-hidden flex items-center justify-center p-1">
-                      <img
-                        src={card.image}
-                        alt={card.title}
-                        className="w-full h-full object-contain object-bottom group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                    </div>
-                  ) : (
-                    /* Model or Set image filling left half */
-                    <img
-                      src={card.image}
-                      alt={card.title}
-                      className={`w-full h-full ${card.imgStyle} group-hover:scale-105 transition-transform duration-500`}
-                      loading="lazy"
+                  {/* Theme-Aware Right-to-Left Gradient Overlay so Dynamic Text sits directly on the card image */}
+                  <div className="absolute inset-0 cat-card-overlay pointer-events-none transition-opacity duration-300" />
+
+                  {/* Dynamic Category Title + Arrow Overlay (Right side in RTL) */}
+                  <div className="relative z-10 flex items-center gap-2.5 text-right mr-1">
+                    <h3
+                      className={`font-display text-base sm:text-lg lg:text-[19px] font-bold transition-colors leading-snug ${
+                        isActive
+                          ? 'text-[#8C6D46] dark:text-[#C5A880]'
+                          : 'text-[#1C1613] dark:text-white group-hover:text-[#8C6D46] dark:group-hover:text-[#C5A880]'
+                      }`}
+                    >
+                      {card.title}
+                    </h3>
+                    <ArrowLeft
+                      className={`w-4 h-4 transition-all duration-300 ${
+                        isActive
+                          ? 'text-[#8C6D46] dark:text-[#C5A880] -translate-x-1'
+                          : 'text-[#3A2E25] dark:text-white/85 group-hover:text-[#8C6D46] dark:group-hover:text-[#C5A880] group-hover:-translate-x-1'
+                      }`}
                     />
-                  )}
-
-                  {/* Soft right-edge gradient fade into card background */}
-                  <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-transparent to-[#352A20]/40 dark:to-[#352A20]/40 to-[#DFD2C2]/40 pointer-events-none" />
+                  </div>
                 </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
+
+        {/* Subtle Reset Filter Pill only when a specific category card is active */}
+        {selectedCategory !== 'all' && (
+          <div className="mt-4 flex items-center justify-end">
+            <button
+              onClick={() => onSelectCategory('all')}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8C6D46] dark:text-[#C5A880] hover:underline cursor-pointer px-3 py-1 rounded-full bg-[#C5A880]/10 border border-[#C5A880]/30 transition-all"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>نمایش همه محصولات</span>
+            </button>
+          </div>
+        )}
       </div>
 
     </div>
