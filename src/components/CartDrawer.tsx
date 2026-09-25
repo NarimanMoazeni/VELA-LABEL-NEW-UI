@@ -89,7 +89,17 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     const encodedText = encodeURIComponent(messageText);
     const telegramUrl = `https://t.me/velalabel?text=${encodedText}`;
 
-    window.open(telegramUrl, '_blank');
+    try {
+      const a = document.createElement('a');
+      a.href = telegramUrl;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch {
+      window.location.href = telegramUrl;
+    }
     onShowToast('در حال انتقال به تلگرام مشاور اختصاصی مزون ولا...');
   };
 
