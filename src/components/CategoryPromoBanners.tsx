@@ -63,14 +63,14 @@ export const CategoryPromoBanners: React.FC<CategoryPromoBannersProps> = ({
   return (
     <div className="w-full select-none">
       
-      {/* 1. Refined, Minimalist Trust Strip (Organically connected below Hero, matching Reference 1) */}
-      <div className="w-full bg-[#EFE9E0] dark:bg-[#14100D] border-b border-stone-300/80 dark:border-white/10 py-3.5 sm:py-4 px-4 sm:px-8 transition-colors duration-300">
-        <div className="w-full max-w-[940px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
+      {/* 1. Refined, Decompressed Trust Strip */}
+      <div className="w-full bg-[#EFE9E0] dark:bg-[#14100D] border-b border-stone-300/60 dark:border-white/10 py-4 sm:py-5 px-4 sm:px-8 transition-colors duration-300">
+        <div className="w-full max-w-[1140px] mx-auto flex flex-col sm:flex-row items-center justify-around gap-5 sm:gap-0">
           {trustItems.map((item, idx) => {
             const Icon = item.icon;
             return (
               <React.Fragment key={idx}>
-                <div className="flex items-center justify-center gap-3.5 px-2">
+                <div className="flex items-center justify-center gap-3.5 sm:gap-4 px-4 sm:px-6">
                   {/* Right-Aligned Text Hierarchy */}
                   <div className="flex flex-col text-right">
                     <span className="text-xs sm:text-[13.5px] font-bold text-[#1C1613] dark:text-white leading-snug">
@@ -81,17 +81,17 @@ export const CategoryPromoBanners: React.FC<CategoryPromoBannersProps> = ({
                     </span>
                   </div>
 
-                  {/* Minimalist Line Icon (Directly to the left of text, matching Reference 1) */}
+                  {/* Minimalist Line Icon (Directly to the left of text in RTL) */}
                   <Icon
                     className="w-5 h-5 text-[#8C6D46] dark:text-[#D2B998] shrink-0"
-                    strokeWidth={1.6}
+                    strokeWidth={1.5}
                   />
                 </div>
 
-                {/* Vertical Divider ONLY between items (2 dividers total on desktop) */}
+                {/* Softened, Slender Vertical Divider ONLY between items */}
                 {idx < trustItems.length - 1 && (
                   <div
-                    className="hidden sm:block h-7 w-[1px] bg-stone-300 dark:bg-white/12 shrink-0"
+                    className="hidden sm:block h-6 w-[1px] bg-stone-300/50 dark:bg-white/10 shrink-0"
                     aria-hidden="true"
                   />
                 )}
@@ -101,8 +101,8 @@ export const CategoryPromoBanners: React.FC<CategoryPromoBannersProps> = ({
         </div>
       </div>
 
-      {/* 2. 3 Bespoke Category Showcase Cards (Primary Category Navigation with Dynamic Image Overlay Text) */}
-      <div className="w-full max-w-[1360px] mx-auto px-4 sm:px-8 pt-8 sm:pt-10 pb-3 sm:pb-4">
+      {/* 2. 3 Bespoke Category Showcase Cards (Primary Category Navigation with Crisp Photography) */}
+      <div className="w-full max-w-[1360px] mx-auto px-4 sm:px-8 pt-8 sm:pt-10 pb-8 sm:pb-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           {categoryCards.map((card, idx) => {
             const isActive = selectedCategory === card.id;

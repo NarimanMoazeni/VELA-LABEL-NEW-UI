@@ -129,29 +129,29 @@ html:not(.dark) {
 
 /* Precise Hero Slide Object Positions (Desktop & Mobile) */
 .hero-slide-img-0 {
-  object-position: 70% 8%;
+  object-position: 70% 16%;
 }
 @media (min-width: 640px) {
   .hero-slide-img-0 {
-    object-position: 68% 14%;
+    object-position: 68% 22%;
   }
 }
 
 .hero-slide-img-1 {
-  object-position: 72% 5%;
+  object-position: 72% 18%;
 }
 @media (min-width: 640px) {
   .hero-slide-img-1 {
-    object-position: 68% 10%;
+    object-position: 68% 25%;
   }
 }
 
 .hero-slide-img-2 {
-  object-position: 74% 6%;
+  object-position: 72% 16%;
 }
 @media (min-width: 640px) {
   .hero-slide-img-2 {
-    object-position: 70% 10%;
+    object-position: 70% 22%;
   }
 }
 
@@ -202,23 +202,27 @@ html.dark .hero-gradient-mobile {
   );
 }
 
+/* Category Cards Overlay: Soft, localized RTL gradient strictly behind text on the right edge,
+   leaving 60%+ of the card completely unshaded so garment photography stays sharp, vivid, and natural. */
 .cat-card-overlay {
   background: linear-gradient(
     to left,
-    rgba(242, 235, 226, 0.96) 0%,
-    rgba(238, 229, 218, 0.85) 36%,
-    rgba(238, 229, 218, 0.35) 60%,
-    rgba(246, 242, 236, 0.00) 100%
+    rgba(246, 242, 236, 0.82) 0%,
+    rgba(246, 242, 236, 0.52) 22%,
+    rgba(246, 242, 236, 0.18) 36%,
+    rgba(246, 242, 236, 0.00) 48%,
+    transparent 100%
   );
 }
 
 html.dark .cat-card-overlay {
   background: linear-gradient(
     to left,
-    rgba(24, 19, 15, 0.96) 0%,
-    rgba(28, 22, 18, 0.88) 36%,
-    rgba(28, 22, 18, 0.40) 60%,
-    rgba(18, 14, 12, 0.00) 100%
+    rgba(18, 14, 12, 0.85) 0%,
+    rgba(18, 14, 12, 0.55) 22%,
+    rgba(18, 14, 12, 0.20) 36%,
+    rgba(18, 14, 12, 0.00) 48%,
+    transparent 100%
   );
 }
 

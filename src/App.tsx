@@ -283,7 +283,7 @@ export default function App() {
         <section id="catalog-section" className="w-full scroll-mt-[80px]">
           <div
             id="catalog-grid"
-            className="w-full max-w-[1360px] mx-auto px-4 sm:px-8 pt-2 pb-12 sm:pb-16"
+            className="w-full max-w-[1360px] mx-auto px-4 sm:px-8 pt-2 sm:pt-4 pb-12 sm:pb-16"
           >
             {isCategoryLoading ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -341,7 +341,7 @@ export default function App() {
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 left-6 z-30 w-10 h-10 rounded-full bg-white dark:bg-[#181411] text-[#7A5B36] dark:text-[#C5A880] hover:bg-[#7A5B36] hover:text-white dark:hover:bg-[#C5A880] dark:hover:text-[#120E0C] border border-stone-300 dark:border-white/15 flex items-center justify-center shadow-2xl transition-all duration-200 active:scale-95 cursor-pointer skip-delay"
+          className="fixed bottom-6 left-6 z-30 w-10 h-10 rounded-full bg-white dark:bg-[#181411] text-[#C5A880] hover:bg-[#C5A880] hover:text-[#120E0C] border border-[#DDD5C9] dark:border-white/15 flex items-center justify-center shadow-2xl transition-all duration-200 active:scale-95 cursor-pointer skip-delay"
           title="بازگشت به ابتدای صفحه"
           aria-label="بازگشت به بالا"
         >
