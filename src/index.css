@@ -127,31 +127,17 @@ html:not(.dark) {
   background: #C5A880;
 }
 
-/* Precise Hero Slide Object Positions (Desktop & Mobile) */
-.hero-slide-img-0 {
-  object-position: 70% 16%;
-}
-@media (min-width: 640px) {
-  .hero-slide-img-0 {
-    object-position: 68% 22%;
-  }
-}
-
-.hero-slide-img-1 {
+/* Precise Hero Slide Object Positions (Unified Campaign Framing) */
+.hero-slide-img-0,
+.hero-slide-img-1,
+.hero-slide-img-2 {
   object-position: 72% 18%;
 }
 @media (min-width: 640px) {
-  .hero-slide-img-1 {
-    object-position: 68% 25%;
-  }
-}
-
-.hero-slide-img-2 {
-  object-position: 72% 16%;
-}
-@media (min-width: 640px) {
+  .hero-slide-img-0,
+  .hero-slide-img-1,
   .hero-slide-img-2 {
-    object-position: 70% 22%;
+    object-position: 70% 20%;
   }
 }
 

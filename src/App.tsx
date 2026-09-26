@@ -279,12 +279,31 @@ export default function App() {
           onSelectCategory={handleCategorySelect}
         />
 
-        {/* 4. Product Cards Grid (Aligned 3-Column Grid directly below Category Cards) */}
-        <section id="catalog-section" className="w-full scroll-mt-[80px]">
+        {/* 4. Product Cards Grid (Aligned 3-Column Grid with Dedicated Section Header) */}
+        <section id="catalog-section" className="w-full scroll-mt-[80px] pt-8 sm:pt-12 lg:pt-14 pb-14 sm:pb-20">
           <div
             id="catalog-grid"
-            className="w-full max-w-[1360px] mx-auto px-4 sm:px-8 pt-2 sm:pt-4 pb-12 sm:pb-16"
+            className="w-full max-w-[1360px] mx-auto px-4 sm:px-8"
           >
+            {/* Editorial Section Header: Clearly separates category navigation from product collection */}
+            <div className="flex items-center justify-between mb-7 sm:mb-9 pb-3.5 border-b border-stone-300/40 dark:border-white/8">
+              <div className="flex items-center gap-2.5">
+                <div className="w-1 h-5 rounded-full bg-[#8C6D46] dark:bg-[#C5A880]" />
+                <h2 className="font-display text-lg sm:text-xl font-bold text-[#181310] dark:text-white leading-tight">
+                  {selectedCategory === 'all'
+                    ? 'منتخب آثار مزون ولا'
+                    : selectedCategory === 'set'
+                    ? 'ست وست و شلوار'
+                    : selectedCategory === 'blazer'
+                    ? 'کت و بلیزر تک'
+                    : 'شخصی‌دوزی مزون'}
+                </h2>
+              </div>
+              <span className="text-xs text-[#6B5D52] dark:text-[#9E9287]">
+                {filteredProducts.length} اثر کپسولی
+              </span>
+            </div>
+
             {isCategoryLoading ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {Array.from({ length: 3 }).map((_, i) => (

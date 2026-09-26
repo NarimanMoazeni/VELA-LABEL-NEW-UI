@@ -102,7 +102,7 @@ export const CategoryPromoBanners: React.FC<CategoryPromoBannersProps> = ({
       </div>
 
       {/* 2. 3 Bespoke Category Showcase Cards (Primary Category Navigation with Crisp Photography) */}
-      <div className="w-full max-w-[1360px] mx-auto px-4 sm:px-8 pt-8 sm:pt-10 pb-8 sm:pb-12">
+      <div className="w-full max-w-[1360px] mx-auto px-4 sm:px-8 pt-8 sm:pt-12 pb-10 sm:pb-14 lg:pb-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           {categoryCards.map((card, idx) => {
             const isActive = selectedCategory === card.id;
@@ -173,6 +173,9 @@ export const CategoryPromoBanners: React.FC<CategoryPromoBannersProps> = ({
             </button>
           </div>
         )}
+
+        {/* Subtle, soft divider separating navigation layer from catalog */}
+        <div className="mt-8 sm:mt-12 w-full h-[1px] bg-gradient-to-r from-transparent via-stone-300/40 dark:via-white/8 to-transparent" />
       </div>
 
     </div>

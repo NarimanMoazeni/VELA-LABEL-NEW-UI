@@ -16,7 +16,7 @@ export const Hero: React.FC<HeroProps> = ({
 }) => {
   const pool = featuredProducts.length > 0 ? featuredProducts : PRODUCTS.slice(0, 3);
 
-  // 3 Wide Panoramic Neutral-Architecture Hero Slides with Slide-Specific Focal Positioning
+  // 3 Wide Panoramic Neutral-Architecture Hero Slides with Consistent Subject Scale & Art Direction
   const slides = [
     {
       product: pool[0] || PRODUCTS[0],
@@ -24,6 +24,7 @@ export const Hero: React.FC<HeroProps> = ({
       title: pool[0]?.title || 'ست وست و شلوار شکلاتی ولا',
       categoryType: 'set',
       slideClassName: 'hero-slide-img-0',
+      tagline: 'طراحی انحصاری ست سه‌تکه با ایستایی شکیل و خط اتوی ماندگار؛ دوخته‌شده با متریال بافت‌دار پاییزه در آتلیه اختصاصی اصفهان.',
     },
     {
       product: pool[1] || PRODUCTS[1],
@@ -31,6 +32,7 @@ export const Hero: React.FC<HeroProps> = ({
       title: pool[1]?.title || 'کت تک کلاسیک مشکی آدل',
       categoryType: 'blazer',
       slideClassName: 'hero-slide-img-1',
+      tagline: 'کت تک کلاسیک با لایی‌کشی سنتی اتویی و آسترکشی تمام‌ابریشمی؛ تجسم کمال دوخت برای استایل‌های رسمی و باوقار.',
     },
     {
       product: pool[2] || PRODUCTS[2],
@@ -38,6 +40,7 @@ export const Hero: React.FC<HeroProps> = ({
       title: pool[2]?.title || 'کت تک مزونی مشکی لورن',
       categoryType: 'blazer',
       slideClassName: 'hero-slide-img-2',
+      tagline: 'برش مینیمال مدرن با جیب‌های شکافی مخفی و خط شانه ساختاریافته؛ گزینه‌ای فاخر و بی‌پیرایه برای کژوال اسمارت.',
     },
   ];
 
@@ -138,36 +141,41 @@ export const Hero: React.FC<HeroProps> = ({
 
       {/* Persian Editorial Content Block (Asymmetric, Left-Safe Area, Strictly Isolated from Model) */}
       <div className="relative z-20 w-full max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-20 h-full flex items-center" dir="rtl">
-        <div className="w-full sm:max-w-[480px] lg:max-w-[500px] mr-auto flex flex-col items-start text-right">
+        <div className="w-full sm:max-w-[540px] lg:max-w-[580px] mr-auto flex flex-col items-start text-right">
           
-          {/* Eyebrow: Season & Haute Couture Code */}
-          <div className="flex items-center gap-3 mb-3.5">
+          {/* Eyebrow: Unified Capsule Campaign Tag */}
+          <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-[#C5A880]/15 dark:bg-[#C5A880]/18 border border-[#C5A880]/35 text-[#7A5B36] dark:text-[#D4B890] mb-3.5 shadow-2xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#8C6D46] dark:bg-[#C5A880]" />
             <span
-              className="font-latin text-[10.5px] sm:text-[11.5px] text-[#7A5B36] dark:text-[#C5A880] tracking-[0.28em] uppercase font-semibold"
+              className="font-latin text-[10.5px] sm:text-[11.5px] font-semibold tracking-[0.24em] uppercase"
               dir="ltr"
             >
               AUTUMN / WINTER 2026
             </span>
-            <div className="w-8 sm:w-10 h-[1.5px] bg-[#7A5B36]/60 dark:bg-[#C5A880]/70 rounded-full" />
+            <span className="text-stone-400 dark:text-stone-500 text-xs">•</span>
+            <span className="text-[11px] font-medium text-[#181310] dark:text-white/90">
+              کالکشن کپسولی
+            </span>
           </div>
 
           {/* Main Persian Campaign Headline */}
-          <h1 className="font-display text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#181310] dark:text-white tracking-tight leading-[1.20] drop-shadow-xs">
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-bold text-[#181310] dark:text-white tracking-tight leading-[1.18] drop-shadow-xs">
             اصالت، وقار و سادگی
           </h1>
 
-          {/* Dynamic Slide Subtitle */}
-          <h2 className="text-base sm:text-lg lg:text-xl text-[#4A3D33] dark:text-[#DFD3C6] font-medium mt-2">
-            {current.title}
-          </h2>
+          {/* Dynamic Slide Subtitle & Look Indicator */}
+          <div className="flex items-center gap-2.5 mt-2.5 mb-3">
+            <span className="text-xs font-bold text-[#8C6D46] dark:text-[#C5A880] tracking-wide">
+              لوک ۰{index + 1}:
+            </span>
+            <h2 className="text-sm sm:text-base lg:text-lg font-semibold text-[#3A2E25] dark:text-[#E8DDD0]">
+              {current.title}
+            </h2>
+          </div>
 
-          {/* Elegant Hairline Rule */}
-          <div className="w-8 h-[1px] bg-[#7A5B36]/40 dark:bg-[#C5A880]/40 my-4 rounded-full" />
-
-          {/* Compact 2-Line Poetic Description */}
-          <p className="text-xs sm:text-[13.5px] text-[#55473D] dark:text-[#B0A396] leading-[1.8] max-w-[390px] mb-7 sm:mb-8">
-            ترکیب اصالت ایرانی و طراحی مدرن؛<br className="hidden sm:inline" />
-            برای زنانی که در هر موقعیتی، خاص هستند.
+          {/* Tailored Poetic Description */}
+          <p className="text-xs sm:text-[13.5px] lg:text-sm text-[#55473D] dark:text-[#B8ACA0] leading-[1.85] max-w-[500px] mb-6 sm:mb-7">
+            {current.tagline}
           </p>
 
           {/* Editorial Action CTAs */}
@@ -184,35 +192,35 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Secondary Action Button */}
             <button
               onClick={() => onOpenQuickView(current.product)}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-[#181310]/20 dark:border-white/25 hover:border-[#181310]/60 dark:hover:border-white/60 bg-white/40 dark:bg-black/25 hover:bg-white/70 dark:hover:bg-white/10 text-[#181310] dark:text-white font-medium px-5 sm:px-6 py-3 rounded-full backdrop-blur-xs transition-all duration-200 active:scale-95 cursor-pointer text-xs sm:text-sm"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-stone-300 dark:border-white/20 hover:border-stone-500 dark:hover:border-white/40 bg-white/70 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 text-[#181310] dark:text-white font-medium px-5 sm:px-6 py-3 rounded-full backdrop-blur-xs transition-all duration-200 active:scale-95 cursor-pointer text-xs sm:text-sm"
             >
-              <span>بررسی {current.categoryType === 'set' ? 'ست وست و شلوار' : 'کت و بلیزر'}</span>
+              <span>جزئیات و سفارش اثر</span>
             </button>
           </div>
 
-          {/* Bottom Pagination Indicator (Dots + Counter) */}
-          <div className="mt-8 flex items-center gap-3 bg-white/65 dark:bg-black/35 backdrop-blur-md border border-stone-300/80 dark:border-white/15 px-3 py-1.5 rounded-full shadow-2xs">
+          {/* Grounded Slider Indicator & Navigation */}
+          <div className="mt-7 sm:mt-8 flex items-center gap-3.5 bg-white/70 dark:bg-black/35 backdrop-blur-md border border-stone-300/80 dark:border-white/15 px-3.5 py-1.5 rounded-full shadow-2xs">
+            <span
+              className="font-latin text-[11px] font-bold text-[#8C6D46] dark:text-[#C5A880] tracking-wider"
+              dir="ltr"
+            >
+              0{index + 1} / 0{slides.length}
+            </span>
+            <div className="w-[1px] h-3 bg-stone-300 dark:bg-white/20" />
             <div className="flex items-center gap-1.5">
               {slides.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => goTo(idx)}
-                  className={`transition-all duration-300 rounded-full cursor-pointer ${
+                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                     idx === index
-                      ? 'w-5 h-1.5 bg-[#7A5B36] dark:bg-[#C5A880]'
-                      : 'w-1.5 h-1.5 bg-stone-400/50 dark:bg-white/30 hover:bg-stone-600 dark:hover:bg-white/60'
+                      ? 'w-6 bg-[#8C6D46] dark:bg-[#C5A880]'
+                      : 'w-1.5 bg-stone-300 dark:bg-white/30 hover:bg-stone-500 dark:hover:bg-white/60'
                   }`}
                   aria-label={`اسلاید ${idx + 1}`}
                 />
               ))}
             </div>
-
-            <span
-              className="font-latin text-[10.5px] font-bold text-[#5A452D] dark:text-[#C5A880] tracking-wider border-r border-stone-300 dark:border-white/20 pr-2 mr-0.5"
-              dir="ltr"
-            >
-              0{index + 1} / 0{slides.length}
-            </span>
           </div>
 
         </div>
