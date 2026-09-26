@@ -123,18 +123,18 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
       isScrolled
-        ? 'bg-[#120E0C]/95 dark:bg-[#120E0C]/95 bg-white/95 backdrop-blur-md shadow-md border-b border-white/10 dark:border-white/10 border-stone-200'
-        : 'bg-[#120E0C]/80 dark:bg-[#120E0C]/80 bg-[#F6F2EC]/90 backdrop-blur-sm border-b border-white/10 dark:border-white/10 border-stone-200/80'
+        ? 'bg-[#F6F2EC]/95 dark:bg-[#120E0C]/95 backdrop-blur-md shadow-xs border-b border-[#DDD5C9] dark:border-white/10'
+        : 'bg-[#F6F2EC]/85 dark:bg-[#120E0C]/80 backdrop-blur-xs border-b border-[#DDD5C9]/80 dark:border-white/10'
     }`}>
       
-      {/* Main Header Container (Full-bleed bar with wide max-width) */}
-      <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-8 h-16 sm:h-[72px] grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-4 select-none">
+      {/* Main Header Container */}
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-8 h-16 sm:h-[72px] grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-4 select-none">
         
         {/* Right Zone (RTL start): Mobile Hamburger + Desktop Nav */}
         <div className="flex items-center justify-start gap-3 sm:gap-6 min-w-0">
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className="md:hidden w-10 h-10 rounded-full border border-white/15 dark:border-white/15 border-stone-300 bg-white/5 dark:bg-white/5 bg-stone-100 flex items-center justify-center text-white dark:text-white text-stone-800 hover:border-[#C5A880] transition-colors cursor-pointer shrink-0"
+            className="md:hidden w-10 h-10 rounded-full border border-[#DDD5C9] dark:border-white/15 bg-white/80 dark:bg-white/5 flex items-center justify-center text-[#181310] dark:text-white hover:border-[#7A5B36] dark:hover:border-[#C5A880] transition-colors cursor-pointer shrink-0"
             aria-label="منوی سایت"
           >
             <Menu className="w-5 h-5" />
@@ -149,13 +149,13 @@ export const Header: React.FC<HeaderProps> = ({
                   onClick={() => onSelectCategory(item.id)}
                   className={`text-sm font-medium transition-all duration-200 relative py-2 cursor-pointer skip-delay ${
                     isActive
-                      ? 'text-white dark:text-white text-stone-900 font-bold'
-                      : 'text-[#A89B90] dark:text-[#A89B90] text-stone-600 hover:text-white dark:hover:text-white hover:text-stone-900'
+                      ? 'text-[#181310] dark:text-white font-bold'
+                      : 'text-[#635347] dark:text-[#A89B90] hover:text-[#181310] dark:hover:text-white'
                   }`}
                 >
                   <span>{item.label}</span>
                   {isActive && (
-                    <span className="absolute bottom-0 right-0 left-0 h-[2.5px] bg-[#C5A880] rounded-full shadow-[0_0_8px_rgba(197,168,128,0.6)]" />
+                    <span className="absolute bottom-0 right-0 left-0 h-[2px] bg-[#7A5B36] dark:bg-[#C5A880] rounded-full shadow-xs" />
                   )}
                 </button>
               );
@@ -172,17 +172,17 @@ export const Header: React.FC<HeaderProps> = ({
           <img
             src="/products/logo.webp"
             alt="لوگوی رسمی ولا لیبل"
-            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-[#C5A880]/70 shadow-md group-hover:scale-105 group-hover:border-[#C5A880] transition-all duration-300"
+            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-[#7A5B36]/50 dark:border-[#C5A880]/70 shadow-xs group-hover:scale-105 group-hover:border-[#7A5B36] dark:group-hover:border-[#C5A880] transition-all duration-300"
           />
           <div className="hidden min-[440px]:flex flex-col text-right">
             <span
-              className="font-serif text-lg sm:text-xl text-white dark:text-white text-stone-900 font-bold uppercase leading-none tracking-[0.16em]"
+              className="font-serif text-lg sm:text-xl text-[#181310] dark:text-white font-bold uppercase leading-none tracking-[0.16em]"
               dir="ltr"
             >
               VELA
             </span>
             <span
-              className="font-latin text-[9px] sm:text-[9.5px] uppercase text-[#C5A880] font-bold tracking-[0.22em] mt-1"
+              className="font-latin text-[8.5px] sm:text-[9px] uppercase text-[#7A5B36] dark:text-[#C5A880] font-bold tracking-[0.22em] mt-1"
               dir="ltr"
             >
               ATELIER • ISFAHAN
@@ -196,14 +196,14 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Search Button / Input */}
           <div className="relative">
             {isSearchOpen ? (
-              <div className="flex items-center bg-[#1A1613] dark:bg-[#1A1613] bg-white border border-[#C5A880]/60 rounded-full px-3 py-1.5 shadow-lg animate-fade-in">
-                <Search className="w-4 h-4 text-[#C5A880] ml-1.5 shrink-0" />
+              <div className="flex items-center bg-[#FAF7F2] dark:bg-[#1A1613] border border-[#7A5B36]/50 dark:border-[#C5A880]/60 rounded-full px-3 py-1.5 shadow-md animate-fade-in">
+                <Search className="w-4 h-4 text-[#7A5B36] dark:text-[#C5A880] ml-1.5 shrink-0" />
                 <input
                   type="text"
                   placeholder="جستجوی مدل..."
                   value={searchQuery}
                   onChange={(e) => onSearchChange(e.target.value)}
-                  className="bg-transparent text-sm text-white dark:text-white text-stone-900 focus:outline-none w-28 sm:w-44 placeholder:text-[#A89B90]"
+                  className="bg-transparent text-sm text-[#181310] dark:text-white focus:outline-none w-28 sm:w-44 placeholder:text-[#8E8075]"
                   autoFocus
                 />
                 <button
@@ -211,7 +211,7 @@ export const Header: React.FC<HeaderProps> = ({
                     setIsSearchOpen(false);
                     onSearchChange('');
                   }}
-                  className="text-[#A89B90] hover:text-white dark:hover:text-white hover:text-stone-900 mr-1 cursor-pointer"
+                  className="text-[#8E8075] hover:text-[#181310] dark:hover:text-white mr-1 cursor-pointer"
                   aria-label="بستن جستجو"
                 >
                   <X className="w-3.5 h-3.5" />
@@ -220,7 +220,7 @@ export const Header: React.FC<HeaderProps> = ({
             ) : (
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="w-10 h-10 rounded-full border border-white/15 dark:border-white/15 border-stone-300 bg-white/5 dark:bg-white/5 bg-white/60 flex items-center justify-center text-white/90 dark:text-white/90 text-stone-700 hover:border-[#C5A880] hover:text-white transition-all cursor-pointer shadow-xs skip-delay"
+                className="w-10 h-10 rounded-full border border-[#DDD5C9] dark:border-white/15 bg-white/75 dark:bg-white/5 flex items-center justify-center text-[#2A2019] dark:text-white/90 hover:border-[#7A5B36] dark:hover:border-[#C5A880] hover:text-[#181310] dark:hover:text-white transition-all cursor-pointer shadow-2xs skip-delay"
                 title="جستجو در کالکشن"
                 aria-label="جستجو در کالکشن"
               >
@@ -232,23 +232,23 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Theme Toggle */}
           <button
             onClick={handleThemeToggle}
-            className={`${isSearchOpen ? 'hidden sm:flex' : 'flex'} w-10 h-10 rounded-full border border-white/15 dark:border-white/15 border-stone-300 bg-white/5 dark:bg-white/5 bg-white/60 items-center justify-center text-white/90 dark:text-white/90 text-stone-700 hover:border-[#C5A880] transition-all cursor-pointer shadow-xs skip-delay`}
+            className={`${isSearchOpen ? 'hidden sm:flex' : 'flex'} w-10 h-10 rounded-full border border-[#DDD5C9] dark:border-white/15 bg-white/75 dark:bg-white/5 items-center justify-center text-[#2A2019] dark:text-white/90 hover:border-[#7A5B36] dark:hover:border-[#C5A880] transition-all cursor-pointer shadow-2xs skip-delay`}
             title={isDark ? 'حالت روشن' : 'حالت تیره'}
             aria-label={isDark ? 'فعال‌سازی حالت روشن' : 'فعال‌سازی حالت تیره'}
           >
-            {isDark ? <Sun className="w-4 h-4 text-[#C5A880]" /> : <Moon className="w-4 h-4 text-[#C5A880]" />}
+            {isDark ? <Sun className="w-4 h-4 text-[#C5A880]" /> : <Moon className="w-4 h-4 text-[#7A5B36]" />}
           </button>
 
           {/* Wishlist Button with Badge */}
           <button
             onClick={onOpenWishlist}
-            className="w-10 h-10 rounded-full border border-white/15 dark:border-white/15 border-stone-300 bg-white/5 dark:bg-white/5 bg-white/60 flex items-center justify-center text-white/90 dark:text-white/90 text-stone-700 hover:border-[#C5A880] transition-all relative cursor-pointer shadow-xs skip-delay"
+            className="w-10 h-10 rounded-full border border-[#DDD5C9] dark:border-white/15 bg-white/75 dark:bg-white/5 flex items-center justify-center text-[#2A2019] dark:text-white/90 hover:border-[#7A5B36] dark:hover:border-[#C5A880] transition-all relative cursor-pointer shadow-2xs skip-delay"
             title="برگزیده‌ها"
             aria-label="برگزیده‌ها"
           >
-            <Heart className={`w-4 h-4 crossfade-icon ${wishlistCount > 0 ? 'text-[#C5A880] fill-[#C5A880]' : 'text-stone-700 dark:text-white/80'}`} />
+            <Heart className={`w-4 h-4 crossfade-icon ${wishlistCount > 0 ? 'text-[#7A5B36] fill-[#7A5B36] dark:text-[#C5A880] dark:fill-[#C5A880]' : 'text-[#4A3E36] dark:text-white/80'}`} />
             {wishlistCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-[#C5A880] text-[#120E0C] text-[10px] font-bold w-[18px] h-[18px] rounded-full flex items-center justify-center shadow-sm">
+              <span className="absolute -top-1 -right-1 bg-[#7A5B36] dark:bg-[#C5A880] text-white dark:text-[#120E0C] text-[10px] font-bold w-[18px] h-[18px] rounded-full flex items-center justify-center shadow-xs">
                 {toPersianDigits(wishlistCount)}
               </span>
             )}
@@ -257,7 +257,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Cart Pill Button */}
           <button
             onClick={onOpenCart}
-            className={`flex items-center gap-2 bg-[#1A1613] dark:bg-[#1A1613] bg-stone-900 hover:bg-[#251F1A] border border-white/15 dark:border-white/15 border-stone-800 hover:border-[#C5A880] text-white pl-3 pr-3.5 sm:pr-4 py-2 rounded-full transition-all shadow-md active:scale-95 cursor-pointer skip-delay ${
+            className={`flex items-center gap-2 bg-[#181310] hover:bg-[#2C231E] dark:bg-[#1A1613] dark:hover:bg-[#251F1A] border border-[#181310] dark:border-white/15 text-white pl-3 pr-3.5 sm:pr-4 py-2 rounded-full transition-all shadow-sm active:scale-95 cursor-pointer skip-delay ${
               cartBump ? 'animate-cart-bump' : ''
             }`}
             title="سبد خرید"
@@ -265,7 +265,7 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <ShoppingBag className="w-4 h-4 text-[#C5A880]" />
             <span className="text-sm font-semibold hidden sm:inline text-white/95">سبد خرید</span>
-            <span className="bg-[#C5A880] text-[#120E0C] text-[11px] font-bold min-w-5 h-5 px-1 rounded-full flex items-center justify-center shadow-xs">
+            <span className="bg-[#C5A880] text-[#120E0C] text-[11px] font-bold min-w-5 h-5 px-1 rounded-full flex items-center justify-center shadow-2xs">
               {toPersianDigits(cartCount)}
             </span>
           </button>
@@ -276,38 +276,35 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Mobile Navigation Drawer */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm md:hidden animate-fade-in">
+        <div className="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm md:hidden animate-fade-in">
           <div className="fixed inset-0" onClick={() => setIsMobileMenuOpen(false)} />
-          <div className="fixed inset-y-0 right-0 w-4/5 max-w-sm bg-[#16120E] dark:bg-[#16120E] bg-[#FAF7F2] p-6 shadow-2xl flex flex-col justify-between z-10 border-l border-white/10 dark:border-white/10 border-stone-300 animate-fade-in text-right">
+          <div className="fixed inset-y-0 right-0 w-4/5 max-w-sm bg-[#FAF7F2] dark:bg-[#16120E] p-6 shadow-2xl flex flex-col justify-between z-10 border-l border-[#DDD5C9] dark:border-white/10 animate-fade-in text-right">
             <div className="space-y-6">
               
               {/* Drawer Header */}
-              <div className="flex items-center justify-between pb-4 border-b border-white/10 dark:border-white/10 border-stone-300">
+              <div className="flex items-center justify-between pb-4 border-b border-[#DDD5C9] dark:border-white/10">
                 <div className="flex items-center gap-3">
                   <img
                     src="/products/logo.webp"
                     alt="لوگوی ولا لیبل"
-                    className="w-11 h-11 rounded-full object-cover border-2 border-[#C5A880]/70"
+                    className="w-10 h-10 rounded-full object-cover border-2 border-[#7A5B36]/60 dark:border-[#C5A880]/70"
                   />
                   <div className="flex flex-col text-right">
-                    <span className="font-serif text-base text-white dark:text-white text-stone-900 font-bold tracking-wider">VELA LABEL</span>
-                    <span className="font-latin text-[8.5px] text-[#C5A880] tracking-[0.2em] uppercase font-bold">ATELIER • ISFAHAN</span>
+                    <span className="font-serif text-base text-[#181310] dark:text-white font-bold tracking-wider">VELA LABEL</span>
+                    <span className="font-latin text-[8.5px] text-[#7A5B36] dark:text-[#C5A880] tracking-[0.2em] uppercase font-bold">ATELIER • ISFAHAN</span>
                   </div>
                 </div>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="w-9 h-9 rounded-full border border-white/15 dark:border-white/15 border-stone-300 bg-white/5 dark:bg-white/5 bg-stone-100 flex items-center justify-center text-white/80 dark:text-white/80 text-stone-700 hover:text-white"
+                  className="w-9 h-9 rounded-full border border-[#DDD5C9] dark:border-white/15 bg-white/80 dark:bg-white/5 flex items-center justify-center text-[#2A2019] dark:text-white/80 hover:text-[#181310] dark:hover:text-white"
                   aria-label="بستن منو"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
-              {/* Navigation Items */}
-              <nav className="flex flex-col space-y-1">
-                <span className="text-[11px] text-[#C5A880] uppercase tracking-wider font-semibold pb-2">
-                  دسته‌بندی‌های کالکشن
-                </span>
+              {/* Navigation Links */}
+              <div className="flex flex-col space-y-2">
                 {navLinks.map((item) => (
                   <button
                     key={item.id}
@@ -315,51 +312,33 @@ export const Header: React.FC<HeaderProps> = ({
                       onSelectCategory(item.id);
                       setIsMobileMenuOpen(false);
                     }}
-                    className={`text-right py-3 px-3 rounded-xl text-sm font-medium transition-all ${
+                    className={`text-right py-3 px-4 rounded-xl text-sm font-semibold transition-all ${
                       activeCategory === item.id
-                        ? 'bg-[#C5A880] text-[#120E0C] font-bold shadow-md'
-                        : 'text-[#A89B90] dark:text-[#A89B90] text-stone-700 hover:text-white hover:bg-white/5'
+                        ? 'bg-[#7A5B36]/10 dark:bg-[#C5A880]/15 text-[#7A5B36] dark:text-[#C5A880] font-bold'
+                        : 'text-[#55473D] dark:text-[#A89B90] hover:bg-stone-200/50 dark:hover:bg-white/5 hover:text-[#181310] dark:hover:text-white'
                     }`}
                   >
                     {item.label}
                   </button>
                 ))}
-                
-                <button
-                  onClick={() => {
-                    onOpenWishlist();
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="text-right py-3 px-3 rounded-xl text-sm font-medium text-[#A89B90] dark:text-[#A89B90] text-stone-700 hover:text-white hover:bg-white/5 flex items-center justify-between"
-                >
-                  <span>برگزیده‌ها</span>
-                  <span className="text-xs bg-[#C5A880]/20 text-[#C5A880] px-2 py-0.5 rounded-full font-bold">
-                    {toPersianDigits(wishlistCount)}
-                  </span>
-                </button>
-              </nav>
+              </div>
+
             </div>
 
-            {/* Social & Contact Actions */}
-            <div className="pt-4 border-t border-white/10 dark:border-white/10 border-stone-300 space-y-2.5">
-              <a
-                href="https://t.me/velalabel"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-full bg-white/5 dark:bg-white/5 bg-stone-200/60 hover:bg-white/10 border border-white/15 dark:border-white/15 border-stone-300 text-sm text-white dark:text-white text-stone-900 font-medium transition-all"
-              >
-                <Send className="w-3.5 h-3.5 text-[#C5A880]" />
-                <span>مشاوره سایز و سفارش در تلگرام</span>
-              </a>
-              <a
-                href="https://instagram.com/velalabel"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-full bg-[#C5A880] hover:bg-[#D4B890] text-[#120E0C] text-sm font-bold transition-all shadow-md"
-              >
-                <Instagram className="w-3.5 h-3.5" />
-                <span>اینستاگرام ولا لیبل</span>
-              </a>
+            {/* Drawer Footer info */}
+            <div className="pt-4 border-t border-[#DDD5C9] dark:border-white/10 text-xs text-[#8E8075] space-y-2">
+              <div className="flex items-center gap-2">
+                <Send className="w-3.5 h-3.5 text-[#7A5B36] dark:text-[#C5A880]" />
+                <a href="https://t.me/velalabel" target="_blank" rel="noreferrer" className="hover:underline">
+                  پشتیبانی تلگرام: velalabel@
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Instagram className="w-3.5 h-3.5 text-[#7A5B36] dark:text-[#C5A880]" />
+                <a href="https://instagram.com/velalabel" target="_blank" rel="noreferrer" className="hover:underline">
+                  اینستاگرام: velalabel@
+                </a>
+              </div>
             </div>
 
           </div>

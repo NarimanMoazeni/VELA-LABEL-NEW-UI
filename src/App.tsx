@@ -249,7 +249,7 @@ export default function App() {
   const cartTotalCount = cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#120E0C] dark:bg-[#120E0C] bg-[#F6F2EC] text-[#F2E9DC] dark:text-[#F2E9DC] text-stone-900 selection:bg-[#C5A880]/30 selection:text-white transition-colors duration-200">
+    <div className="min-h-screen flex flex-col bg-[#F6F2EC] dark:bg-[#120E0C] text-[#181310] dark:text-[#F2E9DC] selection:bg-[#C5A880]/30 selection:text-white transition-colors duration-200">
       
       {/* 1. Header (Fixed top, without top announcement bar) */}
       <Header
@@ -341,7 +341,7 @@ export default function App() {
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 left-6 z-30 w-10 h-10 rounded-full bg-[#181411] dark:bg-[#181411] bg-white text-[#C5A880] hover:bg-[#C5A880] hover:text-[#120E0C] border border-white/15 dark:border-white/15 border-stone-300 flex items-center justify-center shadow-2xl transition-all duration-200 active:scale-95 cursor-pointer skip-delay"
+          className="fixed bottom-6 left-6 z-30 w-10 h-10 rounded-full bg-white dark:bg-[#181411] text-[#7A5B36] dark:text-[#C5A880] hover:bg-[#7A5B36] hover:text-white dark:hover:bg-[#C5A880] dark:hover:text-[#120E0C] border border-stone-300 dark:border-white/15 flex items-center justify-center shadow-2xl transition-all duration-200 active:scale-95 cursor-pointer skip-delay"
           title="بازگشت به ابتدای صفحه"
           aria-label="بازگشت به بالا"
         >

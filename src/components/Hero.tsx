@@ -16,25 +16,28 @@ export const Hero: React.FC<HeroProps> = ({
 }) => {
   const pool = featuredProducts.length > 0 ? featuredProducts : PRODUCTS.slice(0, 3);
 
-  // 3 Wide Panoramic Neutral-Architecture Hero Slides (Dark & Light Mode Compatible)
+  // 3 Wide Panoramic Neutral-Architecture Hero Slides with Slide-Specific Focal Positioning
   const slides = [
     {
       product: pool[0] || PRODUCTS[0],
       image: '/products/hero-slide-1.webp',
       title: pool[0]?.title || 'ست وست و شلوار شکلاتی ولا',
       categoryType: 'set',
+      slideClassName: 'hero-slide-img-0',
     },
     {
       product: pool[1] || PRODUCTS[1],
       image: '/products/hero-slide-2.webp',
       title: pool[1]?.title || 'کت تک کلاسیک مشکی آدل',
       categoryType: 'blazer',
+      slideClassName: 'hero-slide-img-1',
     },
     {
       product: pool[2] || PRODUCTS[2],
       image: '/products/hero-slide-3.webp',
       title: pool[2]?.title || 'کت تک مزونی مشکی لورن',
       categoryType: 'blazer',
+      slideClassName: 'hero-slide-img-2',
     },
   ];
 
@@ -94,14 +97,14 @@ export const Hero: React.FC<HeroProps> = ({
 
   return (
     <section
-      className="w-full relative overflow-hidden select-none bg-[#F6F2EC] dark:bg-[#120E0C] min-h-[560px] sm:min-h-[630px] lg:min-h-[680px] flex items-center border-b border-stone-300/80 dark:border-white/10 transition-colors duration-300"
+      className="w-full relative overflow-hidden select-none bg-[#F6F2EC] dark:bg-[#120E0C] min-h-[580px] sm:min-h-[640px] lg:min-h-[700px] h-[78vh] max-h-[820px] flex items-center border-b border-stone-300/80 dark:border-white/10 transition-colors duration-300"
       aria-label="کمپین پاییز و زمستان ولا لیبل"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* 100% Full-Bleed Panoramic Slide Images with Neutral Architectural Setting */}
+      {/* 100% Full-Bleed Panoramic Slide Images with Slide-Specific Focal Positioning */}
       <div className="absolute inset-0 pointer-events-none">
         {slides.map((s, idx) => {
           const isActive = idx === index;
@@ -112,81 +115,83 @@ export const Hero: React.FC<HeroProps> = ({
                 isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
               }`}
             >
-              {/* Neutral Architectural Fashion Image */}
+              {/* Neutral Architectural Fashion Image with Slide-Specific Top/Model Anchoring */}
               <img
                 src={s.image}
                 alt={s.title}
-                className="w-full h-full object-cover object-[center_right] sm:object-center transition-transform duration-[1400ms] ease-out scale-100"
+                className={`w-full h-full object-cover ${s.slideClassName} transition-transform duration-[1400ms] ease-out scale-100`}
                 loading={idx === 0 ? 'eager' : 'lazy'}
               />
 
-              {/* Desktop Theme-Aware Left Gradient (Dark Espresso in Dark Mode / Warm Ivory in Light Mode) */}
+              {/* Desktop Theme-Aware Left Gradient (Controlled & Subtle: Fades to 0% before reaching the model!) */}
               <div className="absolute inset-0 hidden sm:block pointer-events-none hero-gradient-desktop transition-opacity duration-300" />
 
-              {/* Mobile Theme-Aware Vertical Gradient */}
+              {/* Mobile Theme-Aware Vertical Gradient (Protects model at top, provides text contrast at bottom) */}
               <div className="absolute inset-0 sm:hidden pointer-events-none hero-gradient-mobile transition-opacity duration-300" />
 
               {/* Subtle Top Edge Vignette */}
-              <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/15 dark:from-black/45 to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/10 dark:from-black/40 to-transparent pointer-events-none" />
             </div>
           );
         })}
       </div>
 
-      {/* Persian Content Block (Positioned on the left-center side, matching Reference 1) */}
-      <div className="relative z-20 w-full max-w-[1440px] mx-auto px-6 sm:px-14 lg:px-20 py-14 sm:py-20 flex flex-col justify-center items-end text-right" dir="rtl">
-        <div className="w-full sm:max-w-[520px] lg:max-w-[560px] mr-auto flex flex-col items-start text-right">
+      {/* Persian Editorial Content Block (Asymmetric, Left-Safe Area, Strictly Isolated from Model) */}
+      <div className="relative z-20 w-full max-w-[1720px] mx-auto px-6 sm:px-12 lg:px-20 h-full flex items-center" dir="rtl">
+        <div className="w-full sm:max-w-[480px] lg:max-w-[500px] mr-auto flex flex-col items-start text-right">
           
-          {/* Season Tag with Gold/Bronze Line */}
-          <div className="flex items-center gap-3 mb-3">
+          {/* Eyebrow: Season & Haute Couture Code */}
+          <div className="flex items-center gap-3 mb-3.5">
             <span
-              className="font-latin text-[11px] sm:text-xs text-[#8C6D46] dark:text-[#C5A880] tracking-[0.24em] uppercase font-bold"
+              className="font-latin text-[10.5px] sm:text-[11.5px] text-[#7A5B36] dark:text-[#C5A880] tracking-[0.28em] uppercase font-semibold"
               dir="ltr"
             >
               AUTUMN / WINTER 2026
             </span>
-            <div className="w-9 sm:w-11 h-[1.5px] bg-[#8C6D46] dark:bg-[#C5A880] rounded-full" />
+            <div className="w-8 sm:w-10 h-[1.5px] bg-[#7A5B36]/60 dark:bg-[#C5A880]/70 rounded-full" />
           </div>
 
-          {/* Main Persian Campaign Title */}
-          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-[#1C1613] dark:text-white tracking-tight leading-[1.22]">
+          {/* Main Persian Campaign Headline */}
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-[46px] font-bold text-[#181310] dark:text-white tracking-tight leading-[1.20] drop-shadow-xs">
             اصالت، وقار و سادگی
           </h1>
 
           {/* Dynamic Slide Subtitle */}
-          <h2 className="text-lg sm:text-xl lg:text-[22px] text-[#3A2E25] dark:text-[#EAE0D5] font-semibold mt-2.5">
+          <h2 className="text-base sm:text-lg lg:text-xl text-[#4A3D33] dark:text-[#DFD3C6] font-medium mt-2">
             {current.title}
           </h2>
 
-          {/* Accent Separator Line */}
-          <div className="w-9 h-[1.5px] bg-[#8C6D46] dark:bg-[#C5A880] my-3.5 rounded-full" />
+          {/* Elegant Hairline Rule */}
+          <div className="w-8 h-[1px] bg-[#7A5B36]/40 dark:bg-[#C5A880]/40 my-4 rounded-full" />
 
-          {/* Description */}
-          <p className="text-sm sm:text-[15px] text-[#5C4E43] dark:text-[#B5A89D] leading-relaxed max-w-md mb-7 sm:mb-8">
+          {/* Compact 2-Line Poetic Description */}
+          <p className="text-xs sm:text-[13.5px] text-[#55473D] dark:text-[#B0A396] leading-[1.8] max-w-[390px] mb-7 sm:mb-8">
             ترکیب اصالت ایرانی و طراحی مدرن؛<br className="hidden sm:inline" />
             برای زنانی که در هر موقعیتی، خاص هستند.
           </p>
 
-          {/* Action CTAs: Primary Gold Pill + Theme-Aware Secondary Glass Pill */}
-          <div className="flex flex-wrap items-center gap-3 sm:gap-3.5 w-full sm:w-auto">
+          {/* Editorial Action CTAs */}
+          <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+            {/* Primary Action Button */}
             <button
               onClick={onExploreClick}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#C5A880] hover:bg-[#D4B890] text-[#120E0C] font-bold px-7 sm:px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 cursor-pointer text-sm sm:text-[15px]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#181310] hover:bg-[#2C231E] dark:bg-[#C5A880] dark:hover:bg-[#D4B890] text-[#F8F5F0] dark:text-[#120E0C] font-semibold px-7 py-3 rounded-full shadow-sm hover:shadow-md transition-all duration-200 active:scale-95 cursor-pointer text-xs sm:text-sm"
             >
               <span>مشاهده کلکسیون</span>
               <ArrowLeft className="w-4 h-4" />
             </button>
 
+            {/* Secondary Action Button */}
             <button
               onClick={() => onOpenQuickView(current.product)}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-[#1C1613]/25 dark:border-white/30 hover:border-[#8C6D46] dark:hover:border-[#C5A880] bg-white/60 dark:bg-black/30 hover:bg-white/90 dark:hover:bg-white/10 text-[#1C1613] dark:text-white font-semibold px-6 sm:px-7 py-3.5 rounded-full backdrop-blur-md transition-all duration-200 active:scale-95 cursor-pointer text-sm sm:text-[15px]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-[#181310]/20 dark:border-white/25 hover:border-[#181310]/60 dark:hover:border-white/60 bg-white/40 dark:bg-black/25 hover:bg-white/70 dark:hover:bg-white/10 text-[#181310] dark:text-white font-medium px-5 sm:px-6 py-3 rounded-full backdrop-blur-xs transition-all duration-200 active:scale-95 cursor-pointer text-xs sm:text-sm"
             >
               <span>بررسی {current.categoryType === 'set' ? 'ست وست و شلوار' : 'کت و بلیزر'}</span>
             </button>
           </div>
 
-          {/* Bottom-Left Pagination Indicator (Dots + Counter matching Reference 1) */}
-          <div className="mt-8 sm:mt-10 flex items-center gap-3 bg-white/70 dark:bg-black/40 backdrop-blur-md border border-stone-300/80 dark:border-white/15 px-3.5 py-1.5 rounded-full shadow-xs">
+          {/* Bottom Pagination Indicator (Dots + Counter) */}
+          <div className="mt-8 flex items-center gap-3 bg-white/65 dark:bg-black/35 backdrop-blur-md border border-stone-300/80 dark:border-white/15 px-3 py-1.5 rounded-full shadow-2xs">
             <div className="flex items-center gap-1.5">
               {slides.map((_, idx) => (
                 <button
@@ -194,8 +199,8 @@ export const Hero: React.FC<HeroProps> = ({
                   onClick={() => goTo(idx)}
                   className={`transition-all duration-300 rounded-full cursor-pointer ${
                     idx === index
-                      ? 'w-5 h-2 bg-[#8C6D46] dark:bg-[#C5A880]'
-                      : 'w-2 h-2 bg-stone-400/60 dark:bg-white/35 hover:bg-stone-600 dark:hover:bg-white/70'
+                      ? 'w-5 h-1.5 bg-[#7A5B36] dark:bg-[#C5A880]'
+                      : 'w-1.5 h-1.5 bg-stone-400/50 dark:bg-white/30 hover:bg-stone-600 dark:hover:bg-white/60'
                   }`}
                   aria-label={`اسلاید ${idx + 1}`}
                 />
@@ -203,7 +208,7 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
 
             <span
-              className="font-latin text-[11px] font-bold text-[#6E5638] dark:text-[#C5A880] tracking-wider border-r border-stone-300 dark:border-white/20 pr-2.5 mr-0.5"
+              className="font-latin text-[10.5px] font-bold text-[#5A452D] dark:text-[#C5A880] tracking-wider border-r border-stone-300 dark:border-white/20 pr-2 mr-0.5"
               dir="ltr"
             >
               0{index + 1} / 0{slides.length}
@@ -213,9 +218,9 @@ export const Hero: React.FC<HeroProps> = ({
         </div>
       </div>
 
-      {/* Bottom-Right Floating Glass Badge (matching Reference 1) */}
-      <div className="absolute bottom-6 right-6 sm:right-12 z-20 pointer-events-auto hidden min-[480px]:inline-flex items-center gap-2 bg-white/75 dark:bg-black/45 backdrop-blur-md border border-stone-300/80 dark:border-white/20 text-[#2A211B] dark:text-[#EAE0D5] text-xs font-medium px-4 py-2 rounded-full shadow-md">
-        <Feather className="w-3.5 h-3.5 text-[#8C6D46] dark:text-[#C5A880]" />
+      {/* Bottom-Right Floating Glass Badge */}
+      <div className="absolute bottom-6 right-6 sm:right-12 z-20 pointer-events-auto hidden min-[480px]:inline-flex items-center gap-2 bg-white/75 dark:bg-black/45 backdrop-blur-md border border-stone-300/80 dark:border-white/20 text-[#2A211B] dark:text-[#EAE0D5] text-xs font-medium px-4 py-2 rounded-full shadow-xs">
+        <Feather className="w-3.5 h-3.5 text-[#7A5B36] dark:text-[#C5A880]" />
         <span>طراحی و دوخت اختصاصی</span>
       </div>
 
@@ -224,7 +229,7 @@ export const Hero: React.FC<HeroProps> = ({
         <>
           <button
             onClick={() => go(1)}
-            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/70 dark:bg-black/40 hover:bg-white dark:hover:bg-black/75 backdrop-blur-md border border-stone-300/80 dark:border-white/20 text-[#1C1613] dark:text-white flex items-center justify-center transition-all duration-200 cursor-pointer active:scale-90 z-30 shadow-md"
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/70 dark:bg-black/40 hover:bg-white dark:hover:bg-black/75 backdrop-blur-md border border-stone-300/80 dark:border-white/20 text-[#181310] dark:text-white flex items-center justify-center transition-all duration-200 cursor-pointer active:scale-90 z-30 shadow-xs"
             aria-label="اسلاید قبلی"
             title="قبلی"
           >
@@ -233,7 +238,7 @@ export const Hero: React.FC<HeroProps> = ({
 
           <button
             onClick={() => go(-1)}
-            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/70 dark:bg-black/40 hover:bg-white dark:hover:bg-black/75 backdrop-blur-md border border-stone-300/80 dark:border-white/20 text-[#1C1613] dark:text-white flex items-center justify-center transition-all duration-200 cursor-pointer active:scale-90 z-30 shadow-md"
+            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/70 dark:bg-black/40 hover:bg-white dark:hover:bg-black/75 backdrop-blur-md border border-stone-300/80 dark:border-white/20 text-[#181310] dark:text-white flex items-center justify-center transition-all duration-200 cursor-pointer active:scale-90 z-30 shadow-xs"
             aria-label="اسلاید بعدی"
             title="بعدی"
           >
