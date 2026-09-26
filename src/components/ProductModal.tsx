@@ -91,13 +91,13 @@ export const ProductModal: React.FC<ProductModalProps> = ({
       <div className="fixed inset-0" onClick={onClose} />
 
       {/* Modal Dialog Card */}
-      <div className="bg-[#181411] dark:bg-[#181411] bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto z-10 border border-white/10 dark:border-white/10 border-stone-200 flex flex-col md:flex-row relative animate-pop text-right">
+      <div className="bg-white dark:bg-[#181411] rounded-2xl sm:rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto z-10 border border-[#DDD5C9] dark:border-white/10 flex flex-col md:flex-row relative animate-pop text-right">
         
         {/* Left Column (in RTL: Lookbook Gallery) */}
-        <div className="md:w-1/2 p-5 sm:p-7 flex flex-col justify-between bg-[#14100E] dark:bg-[#14100E] bg-[#FAF7F2] border-b md:border-b-0 md:border-l border-white/10 dark:border-white/10 border-stone-200">
+        <div className="md:w-1/2 p-5 sm:p-7 flex flex-col justify-between bg-[#FAF7F2] dark:bg-[#14100E] border-b md:border-b-0 md:border-l border-[#DDD5C9] dark:border-white/10">
           
           {/* Main Visual Frame */}
-          <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden bg-[#1E1915] dark:bg-[#1E1915] bg-[#EDE6DD] border border-white/10 dark:border-white/10 border-stone-200 shadow-md relative group">
+          <div className="w-full aspect-[3/4] rounded-2xl overflow-hidden bg-[#EDE6DD] dark:bg-[#1E1915] border border-[#DDD5C9] dark:border-white/10 shadow-md relative group">
             <SafeImage
               key={mainSrc}
               src={mainSrc}
@@ -122,8 +122,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                   onClick={() => setSelectedImage(img)}
                   className={`w-14 h-18 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${
                     mainSrc === img
-                      ? 'border-[#C5A880] shadow-md scale-105'
-                      : 'border-white/10 dark:border-white/10 border-stone-300 opacity-70 hover:opacity-100'
+                      ? 'border-[#7A5B36] dark:border-[#C5A880] shadow-md scale-105'
+                      : 'border-[#DDD5C9] dark:border-white/10 opacity-70 hover:opacity-100'
                   }`}
                 >
                   <SafeImage
@@ -145,34 +145,32 @@ export const ProductModal: React.FC<ProductModalProps> = ({
           <div className="space-y-4">
             
             {/* Top Toolbar: Code on Right, Actions on Left */}
-            <div className="flex items-center justify-between pb-3.5 border-b border-white/10 dark:border-white/10 border-stone-200">
+            <div className="flex items-center justify-between pb-3.5 border-b border-[#DDD5C9] dark:border-white/10">
               <span
-                className="font-latin text-[11px] uppercase tracking-wider text-[#C5A880] font-bold"
+                className="font-latin text-[11px] uppercase tracking-wider text-[#7A5B36] dark:text-[#C5A880] font-bold"
                 dir="ltr"
               >
-                {product.code} • {product.categoryLabel}
+                {product.code}
               </span>
-
-              {/* Action Buttons */}
+              
               <div className="flex items-center gap-2">
                 {onToggleWishlist && (
                   <button
                     onClick={(e) => onToggleWishlist(product, e)}
-                    className="w-8 h-8 rounded-full border border-white/15 dark:border-white/15 border-stone-300 bg-white/5 dark:bg-white/5 bg-stone-100 flex items-center justify-center text-white/90 dark:text-white/90 text-stone-700 hover:border-[#C5A880] transition-all cursor-pointer active:scale-110"
+                    className={`w-8 h-8 rounded-full border transition-all flex items-center justify-center cursor-pointer ${
+                      isWishlisted
+                        ? 'bg-[#7A5B36] dark:bg-[#C5A880] border-[#7A5B36] dark:border-[#C5A880] text-white dark:text-[#120E0C]'
+                        : 'border-[#DDD5C9] dark:border-white/15 text-[#55473D] dark:text-white/80 hover:text-white hover:bg-stone-800'
+                    }`}
                     title={isWishlisted ? 'حذف از برگزیده‌ها' : 'افزودن به برگزیده‌ها'}
-                    aria-label="افزودن به برگزیده‌ها"
                   >
-                    <Heart
-                      className={`w-4 h-4 crossfade-icon ${
-                        isWishlisted ? 'fill-[#C5A880] text-[#C5A880]' : 'text-stone-700 dark:text-white/80'
-                      }`}
-                    />
+                    <Heart className={`w-3.5 h-3.5 ${isWishlisted ? 'fill-current' : ''}`} />
                   </button>
                 )}
                 
                 <button
                   onClick={onClose}
-                  className="w-8 h-8 rounded-full border border-white/15 dark:border-white/15 border-stone-300 bg-white/5 dark:bg-white/5 bg-stone-100 flex items-center justify-center text-white/80 dark:text-white/80 text-stone-700 hover:text-white transition-colors cursor-pointer"
+                  className="w-8 h-8 rounded-full border border-[#DDD5C9] dark:border-white/15 text-[#55473D] dark:text-white/80 hover:text-white hover:bg-stone-800 flex items-center justify-center transition-colors cursor-pointer"
                   aria-label="بستن پنجره"
                 >
                   <X className="w-4 h-4" />
@@ -182,65 +180,73 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 
             {/* Title, Fabric, Price */}
             <div className="space-y-1.5">
-              <h2 className="font-display text-xl sm:text-2xl text-white dark:text-white text-stone-900 font-bold tracking-tight">
+              <h2 className="font-display text-xl sm:text-2xl font-bold text-[#181310] dark:text-white leading-snug">
                 {product.title}
               </h2>
-              <div className="text-xs text-[#A89B90] dark:text-[#A89B90] text-stone-500 font-medium">{product.fabric} • {product.origin}</div>
-              <div className="text-xl font-extrabold text-[#E5CCA8] dark:text-[#E5CCA8] text-stone-900 pt-1">{product.priceFormatted}</div>
+              <p className="text-xs text-[#6B5C51] dark:text-[#A89B90] leading-relaxed">
+                {product.description}
+              </p>
+              <div className="flex items-center gap-2 pt-1 text-xs text-[#7A5B36] dark:text-[#C5A880]">
+                <span>جنس پارچه:</span>
+                <span className="font-bold text-[#181310] dark:text-white">{product.fabric}</span>
+              </div>
             </div>
 
-            {/* Description */}
-            <p className="text-sm text-[#A89B90] dark:text-[#A89B90] text-stone-600 leading-relaxed font-normal">
-              {product.description}
-            </p>
+            {/* Price Box */}
+            <div className="p-3.5 rounded-2xl bg-[#FAF7F2] dark:bg-[#14100E] border border-[#DDD5C9] dark:border-white/10 flex items-center justify-between">
+              <span className="text-xs text-[#6B5C51] dark:text-[#A89B90]">بهای اثر:</span>
+              <span className="font-display text-lg font-extrabold text-[#6E4F2E] dark:text-[#E5CCA8]">
+                {product.priceFormatted}
+              </span>
+            </div>
 
             {/* Size Selector */}
-            <div className="space-y-2.5 pt-1">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-bold text-white dark:text-white text-stone-900">
-                  انتخاب سایز: <strong className="text-[#C5A880]">{selectedSize}</strong>
-                </span>
+            <div className="space-y-2 pt-1">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-[#55473D] dark:text-[#A89B90] font-medium">انتخاب سایز:</span>
                 <button
                   onClick={() => setIsSizeGuideOpen(!isSizeGuideOpen)}
-                  className="flex items-center gap-1 text-xs text-[#C5A880] hover:underline transition-colors cursor-pointer"
+                  className="text-[#7A5B36] dark:text-[#C5A880] hover:underline flex items-center gap-1 cursor-pointer font-medium text-[11px]"
                 >
                   <Ruler className="w-3.5 h-3.5" />
-                  <span>راهنمای سایز</span>
+                  <span>راهنمای سایز آتلیه</span>
                 </button>
               </div>
 
-              <div className="grid grid-cols-4 gap-2">
-                {product.sizes.map((sz) => (
-                  <button
-                    key={sz}
-                    onClick={() => setSelectedSize(sz)}
-                    className={`py-2.5 rounded-xl text-sm font-bold border transition-all cursor-pointer ${
-                      selectedSize === sz
-                        ? 'bg-[#C5A880] text-[#120E0C] border-[#C5A880] shadow-md font-bold'
-                        : 'bg-[#1E1915] dark:bg-[#1E1915] bg-white text-[#A89B90] dark:text-[#A89B90] text-stone-700 border-white/10 dark:border-white/10 border-stone-300 hover:border-stone-400'
-                    }`}
-                  >
-                    {sz}
-                  </button>
-                ))}
-              </div>
-
-              {/* Size Guide Info */}
               {isSizeGuideOpen && (
-                <div className="p-3 bg-[#14100E] dark:bg-[#14100E] bg-[#FAF7F2] rounded-xl border border-white/10 dark:border-white/10 border-stone-200 text-xs text-[#A89B90] dark:text-[#A89B90] text-stone-600 space-y-1 animate-fade-in">
-                  <div className="font-semibold text-white dark:text-white text-stone-900">استاندارد دور سینه و کمر آتلیه:</div>
-                  <div>۳۶ (۸۴-۸۸) • ۳۸ (۸۸-۹۲) • ۴۰ (۹۲-۹۶) • ۴۲ (۹۶-۱۰۰)</div>
-                  <div className="text-[11px] text-[#C5A880]">✦ امکان تنظیم قد و سایز سفارشی در تلگرام فراهم است.</div>
+                <div className="p-3 bg-[#FAF7F2] dark:bg-[#14100E] border border-[#DDD5C9] dark:border-white/10 rounded-xl text-[11px] text-[#6B5C51] dark:text-[#A89B90] space-y-1 animate-fade-in leading-relaxed">
+                  <div>• سایز ۱ (۳۶ تا ۳۸): دور سینه ۸۶-۹۲، دور کمر ۶۸-۷۴</div>
+                  <div>• سایز ۲ (۴۰ تا ۴۲): دور سینه ۹۴-۱۰۰، دور کمر ۷۶-۸۲</div>
+                  <div>• امکان شخصی‌دوزی و تغییر قد در آتلیه اصفهان فراهم است.</div>
                 </div>
               )}
+
+              <div className="flex flex-wrap gap-2">
+                {product.sizes.map((s) => {
+                  const isSelected = selectedSize === s;
+                  return (
+                    <button
+                      key={s}
+                      onClick={() => setSelectedSize(s)}
+                      className={`min-w-11 h-9 px-3 rounded-full text-xs font-bold border transition-all cursor-pointer ${
+                        isSelected
+                          ? 'bg-[#181310] dark:bg-[#C5A880] border-[#181310] dark:border-[#C5A880] text-white dark:text-[#120E0C] shadow-sm'
+                          : 'bg-white dark:bg-[#1E1915] border-[#DDD5C9] dark:border-white/10 text-[#55473D] dark:text-white hover:border-stone-400'
+                      }`}
+                    >
+                      {s}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Color Swatches */}
-            <div className="space-y-2.5">
-              <span className="text-sm font-bold text-white dark:text-white text-stone-900">
-                رنگ: <strong className="text-[#C5A880]">{selectedColor}</strong>
+            {/* Color Selector */}
+            <div className="space-y-2 pt-1">
+              <span className="text-xs text-[#55473D] dark:text-[#A89B90] font-medium block">
+                انتخاب رنگ:
               </span>
-              <div className="flex items-center gap-2.5">
+              <div className="flex flex-wrap gap-2">
                 {product.colors.map((c) => {
                   const isSelected = selectedColor === c.name;
                   return (
@@ -249,12 +255,12 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                       onClick={() => setSelectedColor(c.name)}
                       className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs border transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-[#C5A880]/15 border-[#C5A880] text-[#C5A880] font-bold shadow-sm'
-                          : 'bg-[#1E1915] dark:bg-[#1E1915] bg-white border-white/10 dark:border-white/10 border-stone-300 text-[#A89B90] dark:text-[#A89B90] text-stone-700 hover:border-stone-400'
+                          ? 'bg-[#7A5B36]/15 dark:bg-[#C5A880]/15 border-[#7A5B36] dark:border-[#C5A880] text-[#7A5B36] dark:text-[#C5A880] font-bold shadow-sm'
+                          : 'bg-white dark:bg-[#1E1915] border-[#DDD5C9] dark:border-white/10 text-[#55473D] dark:text-[#A89B90] hover:border-stone-400'
                       }`}
                     >
                       <span
-                        className="w-3.5 h-3.5 rounded-full border border-white/20 dark:border-white/20 border-stone-300 shrink-0"
+                        className="w-3.5 h-3.5 rounded-full border border-stone-300 dark:border-white/20 shrink-0"
                         style={{ backgroundColor: c.hex }}
                       />
                       <span>{c.name}</span>
@@ -267,52 +273,48 @@ export const ProductModal: React.FC<ProductModalProps> = ({
           </div>
 
           {/* Stepper + Add to Cart Button */}
-          <div className="pt-4 border-t border-white/10 dark:border-white/10 border-stone-200">
+          <div className="pt-4 border-t border-[#DDD5C9] dark:border-white/10">
             <div className="flex items-center gap-2.5">
               
               {/* Stepper */}
-              <div className="flex items-center gap-0.5 bg-[#14100E] dark:bg-[#14100E] bg-[#FAF7F2] border border-white/10 dark:border-white/10 border-stone-300 rounded-full p-1 shrink-0">
+              <div className="flex items-center gap-0.5 bg-[#FAF7F2] dark:bg-[#14100E] border border-[#DDD5C9] dark:border-white/10 rounded-full p-1 shrink-0">
                 <button
-                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white/90 dark:text-white/90 text-stone-700 hover:bg-white/10 dark:hover:bg-white/10 hover:bg-stone-200 transition-colors cursor-pointer"
-                  aria-label="کم کردن تعداد"
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="w-7 h-7 rounded-full bg-white dark:bg-[#1E1915] border border-[#DDD5C9] dark:border-white/10 text-[#181310] dark:text-white flex items-center justify-center hover:bg-[#7A5B36] hover:text-white dark:hover:bg-[#C5A880] dark:hover:text-[#120E0C] transition-colors cursor-pointer"
+                  aria-label="کاهش تعداد"
                 >
-                  <Minus className="w-3.5 h-3.5" />
+                  <Minus className="w-3 h-3" />
                 </button>
-                <span className="w-6 text-center text-sm font-extrabold text-white dark:text-white text-stone-900">
+                <span className="w-7 text-center text-xs font-bold text-[#181310] dark:text-white">
                   {toPersianDigits(quantity)}
                 </span>
                 <button
-                  onClick={() => setQuantity((q) => Math.min(9, q + 1))}
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white/90 dark:text-white/90 text-stone-700 hover:bg-white/10 dark:hover:bg-white/10 hover:bg-stone-200 transition-colors cursor-pointer"
-                  aria-label="زیاد کردن تعداد"
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="w-7 h-7 rounded-full bg-white dark:bg-[#1E1915] border border-[#DDD5C9] dark:border-white/10 text-[#181310] dark:text-white flex items-center justify-center hover:bg-[#7A5B36] hover:text-white dark:hover:bg-[#C5A880] dark:hover:text-[#120E0C] transition-colors cursor-pointer"
+                  aria-label="افزایش تعداد"
                 >
-                  <Plus className="w-3.5 h-3.5" />
+                  <Plus className="w-3 h-3" />
                 </button>
               </div>
 
               {/* Add to Cart CTA */}
               <button
                 onClick={handleAdd}
-                disabled={isAddedAnimation}
-                className={`flex-1 py-3.5 px-5 rounded-full flex items-center justify-between gap-2 text-sm sm:text-base font-bold transition-all shadow-lg cursor-pointer ${
+                className={`flex-1 py-3 px-5 rounded-full font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-md active:scale-95 cursor-pointer ${
                   isAddedAnimation
                     ? 'bg-emerald-600 text-white'
-                    : 'bg-[#C5A880] hover:bg-[#D4B890] text-[#120E0C] active:scale-[0.98]'
+                    : 'bg-[#181310] hover:bg-[#2C231E] dark:bg-[#C5A880] dark:hover:bg-[#D4B890] text-[#F8F5F0] dark:text-[#120E0C]'
                 }`}
               >
                 {isAddedAnimation ? (
-                  <span className="flex items-center justify-center gap-2 w-full">
-                    <Check className="w-4 h-4 text-white" />
-                    <span>به سبد اضافه شد</span>
-                  </span>
+                  <>
+                    <Check className="w-4 h-4" />
+                    <span>به سبد خرید اضافه شد</span>
+                  </>
                 ) : (
                   <>
-                    <span className="flex items-center gap-2">
-                      <ShoppingBag className="w-4 h-4 text-[#120E0C]" />
-                      <span>افزودن به سبد خرید</span>
-                    </span>
-                    <span className="font-extrabold">{formatTomans(product.price * quantity)}</span>
+                    <ShoppingBag className="w-4 h-4" />
+                    <span>افزودن به سبد خرید</span>
                   </>
                 )}
               </button>
