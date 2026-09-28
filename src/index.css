@@ -10,7 +10,7 @@ html:not(.dark) {
   color-scheme: light;
 }
 
-/* High-Quality Persian Fonts: Official Estedad Webfonts */
+/* High-Quality Persian Fonts: Official Estedad Webfonts (Display Headline) */
 @font-face {
   font-family: 'Estedad';
   src: url('https://cdn.jsdelivr.net/gh/aminabedi68/Estedad@master/fonts/webfonts/Estedad-Regular.woff2') format('woff2');
@@ -43,8 +43,57 @@ html:not(.dark) {
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Estedad';
+  src: url('https://cdn.jsdelivr.net/gh/aminabedi68/Estedad@master/fonts/webfonts/Estedad-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Estedad';
+  src: url('https://cdn.jsdelivr.net/gh/aminabedi68/Estedad@master/fonts/webfonts/Estedad-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* High-Quality Persian Fonts: Official Vazirmatn Webfonts (UI / Supporting Text / Buttons) */
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
-  --font-sans: "Estedad", "Vazirmatn", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Vazirmatn", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-display: "Estedad", "Vazirmatn", sans-serif;
   --font-brand: "Italiana", Georgia, serif;
   --font-serif: "Italiana", Georgia, serif;
@@ -102,6 +151,14 @@ html:not(.dark) {
   .font-latin {
     font-family: var(--font-latin), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     letter-spacing: 0.18em;
+  }
+
+  .font-display {
+    font-family: var(--font-display), "Estedad", sans-serif !important;
+  }
+
+  .font-sans {
+    font-family: var(--font-sans), "Vazirmatn", sans-serif !important;
   }
 
   * {
