@@ -168,7 +168,6 @@ export default function App() {
       ];
     });
     showToast(`«${product.title}» به سبد خرید اضافه شد`);
-    setIsCartOpen(true);
   };
 
   const handleQuickAdd = (product: Product, e: React.MouseEvent) => {

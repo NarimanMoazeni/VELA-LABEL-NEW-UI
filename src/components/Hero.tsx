@@ -144,69 +144,62 @@ export const Hero: React.FC<HeroProps> = ({
         <div className="w-full sm:max-w-[540px] lg:max-w-[580px] mr-auto flex flex-col items-start text-right">
           
           {/* Eyebrow: Unified Capsule Campaign Tag */}
-          <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-[#C5A880]/15 dark:bg-[#C5A880]/18 border border-[#C5A880]/35 text-[#7A5B36] dark:text-[#D4B890] mb-3.5 shadow-2xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#8C6D46] dark:bg-[#C5A880]" />
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/35 dark:bg-black/45 backdrop-blur-md border border-stone-400/30 dark:border-white/15 text-[#C5A880] mb-3.5 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880]" />
             <span
-              className="font-latin text-[10.5px] sm:text-[11.5px] font-semibold tracking-[0.24em] uppercase"
+              className="font-latin text-[11px] sm:text-[11.5px] font-semibold tracking-[0.24em] text-[#C5A880] uppercase"
               dir="ltr"
             >
               AUTUMN / WINTER 2026
             </span>
-            <span className="text-stone-400 dark:text-stone-500 text-xs">•</span>
-            <span className="text-[11px] font-medium text-[#181310] dark:text-white/90">
+            <span className="text-white/40 text-xs">•</span>
+            <span className="font-sans text-[11px] font-medium text-white/90">
               کالکشن کپسولی
             </span>
           </div>
 
-          {/* Main Persian Campaign Headline */}
-          <h1 className="font-display text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-bold text-[#181310] dark:text-white tracking-tight leading-[1.18] drop-shadow-xs">
+          {/* Main Persian Campaign Headline: Strict Estedad 800 Display Font */}
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-[50px] xl:text-[54px] font-extrabold text-stone-950 dark:text-white tracking-tight leading-[1.16] drop-shadow-sm">
             اصالت، وقار و سادگی
           </h1>
 
-          {/* Dynamic Slide Subtitle & Look Indicator */}
-          <div className="flex items-center gap-2.5 mt-2.5 mb-3">
-            <span className="text-xs font-bold text-[#8C6D46] dark:text-[#C5A880] tracking-wide">
+          {/* Dynamic Slide Subtitle & Look Indicator: Strict Vazirmatn Font */}
+          <div className="flex items-center gap-2 mt-3.5 mb-2.5">
+            <span className="font-sans text-xs sm:text-sm font-bold text-[#C5A880] tracking-wide">
               لوک ۰{index + 1}:
             </span>
-            <h2 className="text-sm sm:text-base lg:text-lg font-semibold text-[#3A2E25] dark:text-[#E8DDD0]">
+            <h2 className="font-sans text-sm sm:text-base lg:text-[17px] font-semibold text-stone-800 dark:text-[#E8DDD0]">
               {current.title}
             </h2>
           </div>
 
-          {/* Tailored Poetic Description */}
-          <p className="text-xs sm:text-[13.5px] lg:text-sm text-[#55473D] dark:text-[#B8ACA0] leading-[1.85] max-w-[500px] mb-6 sm:mb-7">
+          {/* Tailored Poetic Description: Strict Vazirmatn Font */}
+          <p className="font-sans text-xs sm:text-[13.5px] lg:text-sm text-stone-700 dark:text-[#C5B8AB] leading-[1.85] max-w-[480px] mb-6 sm:mb-8 font-normal">
             {current.tagline}
           </p>
 
           {/* Editorial Action CTAs */}
           <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
-            {/* Primary Action Button */}
+            {/* Primary Action Button (Right in RTL) */}
             <button
               onClick={onExploreClick}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#181310] hover:bg-[#2C231E] dark:bg-[#C5A880] dark:hover:bg-[#D4B890] text-[#F8F5F0] dark:text-[#120E0C] font-semibold px-7 py-3 rounded-full shadow-sm hover:shadow-md transition-all duration-200 active:scale-95 cursor-pointer text-xs sm:text-sm"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#C5A880] hover:bg-[#D4B890] text-[#120E0C] font-sans font-bold px-7 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 cursor-pointer text-xs sm:text-sm"
             >
               <span>مشاهده کلکسیون</span>
               <ArrowLeft className="w-4 h-4" />
             </button>
 
-            {/* Secondary Action Button */}
+            {/* Secondary Action Button (Left in RTL) */}
             <button
               onClick={() => onOpenQuickView(current.product)}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-stone-300 dark:border-white/20 hover:border-stone-500 dark:hover:border-white/40 bg-white/70 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 text-[#181310] dark:text-white font-medium px-5 sm:px-6 py-3 rounded-full backdrop-blur-xs transition-all duration-200 active:scale-95 cursor-pointer text-xs sm:text-sm"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-stone-400/40 dark:border-white/20 hover:border-stone-500 dark:hover:border-white/40 bg-white/70 dark:bg-black/40 hover:bg-white dark:hover:bg-black/60 text-stone-900 dark:text-white font-sans font-medium px-6 py-3 rounded-full backdrop-blur-md transition-all duration-200 active:scale-95 cursor-pointer text-xs sm:text-sm"
             >
               <span>جزئیات و سفارش اثر</span>
             </button>
           </div>
 
           {/* Grounded Slider Indicator & Navigation */}
-          <div className="mt-7 sm:mt-8 flex items-center gap-3.5 bg-white/70 dark:bg-black/35 backdrop-blur-md border border-stone-300/80 dark:border-white/15 px-3.5 py-1.5 rounded-full shadow-2xs">
-            <span
-              className="font-latin text-[11px] font-bold text-[#8C6D46] dark:text-[#C5A880] tracking-wider"
-              dir="ltr"
-            >
-              0{index + 1} / 0{slides.length}
-            </span>
-            <div className="w-[1px] h-3 bg-stone-300 dark:bg-white/20" />
+          <div className="mt-6 sm:mt-8 flex items-center gap-3 bg-white/75 dark:bg-black/40 backdrop-blur-md border border-stone-300/80 dark:border-white/15 px-3.5 py-1.5 rounded-full shadow-xs">
             <div className="flex items-center gap-1.5">
               {slides.map((_, idx) => (
                 <button
@@ -214,21 +207,28 @@ export const Hero: React.FC<HeroProps> = ({
                   onClick={() => goTo(idx)}
                   className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                     idx === index
-                      ? 'w-6 bg-[#8C6D46] dark:bg-[#C5A880]'
-                      : 'w-1.5 bg-stone-300 dark:bg-white/30 hover:bg-stone-500 dark:hover:bg-white/60'
+                      ? 'w-6 bg-[#C5A880]'
+                      : 'w-1.5 bg-stone-300 dark:bg-white/30 hover:bg-stone-400 dark:hover:bg-white/60'
                   }`}
                   aria-label={`اسلاید ${idx + 1}`}
                 />
               ))}
             </div>
+            <div className="w-[1px] h-3 bg-stone-300 dark:bg-white/20" />
+            <span
+              className="font-latin text-[11px] font-bold text-[#8C6D46] dark:text-[#C5A880] tracking-wider"
+              dir="ltr"
+            >
+              0{index + 1} / 0{slides.length}
+            </span>
           </div>
 
         </div>
       </div>
 
       {/* Bottom-Right Floating Glass Badge */}
-      <div className="absolute bottom-6 right-6 sm:right-12 z-20 pointer-events-auto hidden min-[480px]:inline-flex items-center gap-2 bg-white/75 dark:bg-black/45 backdrop-blur-md border border-stone-300/80 dark:border-white/20 text-[#2A211B] dark:text-[#EAE0D5] text-xs font-medium px-4 py-2 rounded-full shadow-xs">
-        <Feather className="w-3.5 h-3.5 text-[#7A5B36] dark:text-[#C5A880]" />
+      <div className="absolute bottom-6 right-6 sm:right-12 z-20 pointer-events-auto hidden min-[480px]:inline-flex items-center gap-2 bg-white/80 dark:bg-black/50 backdrop-blur-md border border-stone-300/80 dark:border-white/20 text-stone-800 dark:text-[#EAE0D5] text-xs font-sans font-medium px-4 py-2 rounded-full shadow-sm">
+        <Feather className="w-3.5 h-3.5 text-[#8C6D46] dark:text-[#C5A880]" />
         <span>طراحی و دوخت اختصاصی</span>
       </div>
 
