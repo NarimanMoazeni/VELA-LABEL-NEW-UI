@@ -1,0 +1,40 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141416" />
+      <stop offset="100%" stop-color="#08080A" />
+    </linearGradient>
+    <linearGradient id="goldMonogram" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBF2B7" />
+      <stop offset="35%" stop-color="#E2B755" />
+      <stop offset="70%" stop-color="#C48E2E" />
+      <stop offset="100%" stop-color="#F3E198" />
+    </linearGradient>
+    <radialGradient id="goldGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E2B755" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#E2B755" stop-opacity="0" />
+    </radialGradient>
+    <filter id="shadowF" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.8" />
+    </filter>
+  </defs>
+
+  <rect width="240" height="240" rx="48" fill="url(#vBg)" filter="url(#shadowF)" />
+  <rect x="1" y="1" width="238" height="238" rx="47" stroke="rgba(255,255,255,0.08)" stroke-width="2" />
+  <circle cx="120" cy="120" r="90" fill="url(#goldGlow)" />
+
+  <!-- Monogram V Haute Couture -->
+  <g transform="translate(120, 115)">
+    <!-- Thin Left Arm -->
+    <path d="M-46 -50 L-42 -50 L-3 48 L-7 48 Z" fill="url(#goldMonogram)" />
+    <!-- Thick Architectural Right Arm with Serif -->
+    <path d="M-5 48 L44 -44 L48 -44 L48 -50 L18 -50 L18 -44 L25 -44 L-2 36 Z" fill="url(#goldMonogram)" />
+    <!-- Top Serifs -->
+    <rect x="-52" y="-50" width="16" height="3" fill="url(#goldMonogram)" />
+    <rect x="18" y="-50" width="30" height="3" fill="url(#goldMonogram)" />
+  </g>
+
+  <!-- Typography below Monogram -->
+  <text x="120" y="196" text-anchor="middle" font-family="'Cinzel', 'Playfair Display', Georgia, serif" font-size="12" font-weight="700" fill="#E2B755" letter-spacing="5">VELA LABEL</text>
+  <text x="120" y="210" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="8" font-weight="500" fill="#71717A" letter-spacing="3">HAUTE COUTURE</text>
+</svg>

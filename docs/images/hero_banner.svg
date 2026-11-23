@@ -1,0 +1,97 @@
+<svg width="1280" height="420" viewBox="0 0 1280 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F0F11" />
+      <stop offset="50%" stop-color="#18181B" />
+      <stop offset="100%" stop-color="#09090B" />
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBF2B7" />
+      <stop offset="40%" stop-color="#E2B755" />
+      <stop offset="80%" stop-color="#BA872A" />
+      <stop offset="100%" stop-color="#F9EB9A" />
+    </linearGradient>
+    <radialGradient id="warmLight" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#E2B755" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#E2B755" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="luxuryCard" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.06)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0.01)" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="420" rx="20" fill="url(#bBg)" />
+  <circle cx="280" cy="140" r="260" fill="url(#warmLight)" />
+  <circle cx="1000" cy="280" r="280" fill="url(#warmLight)" />
+
+  <!-- Editorial Geometric Accents -->
+  <line x1="80" y1="40" x2="1200" y2="40" stroke="rgba(255,255,255,0.06)" />
+  <line x1="80" y1="380" x2="1200" y2="380" stroke="rgba(255,255,255,0.06)" />
+  <line x1="80" y1="40" x2="80" y2="380" stroke="rgba(255,255,255,0.06)" />
+  <line x1="1200" y1="40" x2="1200" y2="380" stroke="rgba(255,255,255,0.06)" />
+
+  <!-- Left Content -->
+  <g transform="translate(120, 115)">
+    <rect x="0" y="0" width="220" height="30" rx="4" fill="rgba(226, 183, 85, 0.1)" stroke="#E2B755" stroke-opacity="0.4" />
+    <text x="14" y="20" font-family="Georgia, serif" font-size="11" font-weight="600" fill="#E2B755" letter-spacing="3">EDITORIAL ATELIER</text>
+
+    <!-- Main Title -->
+    <text x="0" y="80" font-family="'Cinzel', 'Playfair Display', Georgia, serif" font-size="48" font-weight="700" fill="#FFFFFF" letter-spacing="2">
+      VELA <tspan fill="url(#goldGradient)">LABEL</tspan>
+    </text>
+
+    <!-- Subtitle -->
+    <text x="0" y="118" font-family="-apple-system, sans-serif" font-size="17" font-weight="300" fill="#A1A1AA" letter-spacing="0.5">
+      پلتفرم اختصاصی مزون و فروشگاه لباس زنانه لوکس با رابط کاربری ادیتوریال
+    </text>
+
+    <!-- Badges -->
+    <g transform="translate(0, 145)">
+      <rect x="0" y="0" width="130" height="32" rx="4" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" />
+      <text x="14" y="21" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" fill="#E2B755">✨ Haute Couture</text>
+
+      <rect x="140" y="0" width="145" height="32" rx="4" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" />
+      <text x="154" y="21" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" fill="#E4E4E7">👗 Custom Atelier</text>
+
+      <rect x="295" y="0" width="150" height="32" rx="4" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" />
+      <text x="309" y="21" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" fill="#22C55E">📲 Telegram Order</text>
+    </g>
+  </g>
+
+  <!-- Right Visual: Editorial Card Showcase -->
+  <g transform="translate(760, 65)">
+    <rect width="400" height="290" rx="12" fill="url(#luxuryCard)" stroke="rgba(226, 183, 85, 0.3)" stroke-width="1.5" />
+    
+    <rect width="400" height="42" rx="12" fill="rgba(255,255,255,0.03)" />
+    <circle cx="24" cy="21" r="4.5" fill="#EF4444" opacity="0.8" />
+    <circle cx="39" cy="21" r="4.5" fill="#F59E0B" opacity="0.8" />
+    <circle cx="54" cy="21" r="4.5" fill="#10B981" opacity="0.8" />
+    <text x="200" y="26" text-anchor="middle" font-family="Georgia, serif" font-size="12" font-weight="500" fill="#A1A1AA" letter-spacing="2">VELA ATELIER SHOWCASE</text>
+
+    <!-- Product Card Inner Simulation -->
+    <g transform="translate(25, 65)">
+      <rect width="350" height="135" rx="8" fill="rgba(20, 20, 24, 0.8)" stroke="rgba(255,255,255,0.06)" />
+      
+      <!-- Mini Dress Graphic Symbol -->
+      <path d="M45 35L55 50L60 115H30L35 50Z" fill="url(#goldGradient)" opacity="0.75" />
+      
+      <text x="80" y="52" font-family="Georgia, serif" font-size="17" font-weight="700" fill="#FFFFFF">Midnight Velvet Gown</text>
+      <text x="80" y="74" font-family="-apple-system, sans-serif" font-size="12" fill="#71717A">Hand-Stitched Atelier Piece • Limited Edition</text>
+
+      <rect x="80" y="92" width="90" height="22" rx="4" fill="rgba(226, 183, 85, 0.15)" />
+      <text x="88" y="107" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="#E2B755">EXCLUSIVE</text>
+
+      <text x="325" y="108" text-anchor="end" font-family="Georgia, serif" font-size="18" font-weight="700" fill="#FFFFFF">VELA 2026</text>
+    </g>
+
+    <!-- Telegram Concierge Simulation -->
+    <g transform="translate(25, 220)">
+      <rect width="350" height="48" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" />
+      <circle cx="28" cy="24" r="8" fill="#229ED9" />
+      <path d="M25 24L28 26L32 21" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <text x="46" y="23" font-family="-apple-system, sans-serif" font-size="12" font-weight="600" fill="#F4F4F5">ثبت آنی سفارش و مشاوره سایز در تلگرام</text>
+      <text x="46" y="38" font-family="-apple-system, sans-serif" font-size="10" fill="#71717A">Direct Bot Integration • Personalized Concierge</text>
+    </g>
+  </g>
+</svg>
